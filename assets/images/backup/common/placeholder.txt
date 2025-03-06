@@ -1,0 +1,11 @@
+This is a placeholder file. 
+
+You should replace this with actual placeholder images like:
+- hero-bg.jpg (for the main background)
+- project-placeholder.jpg (for project thumbnails)
+- profile-pic.jpg (for your profile picture)
+
+Image sizes recommended:
+- Hero background: 1920x1080px
+- Project thumbnails: 600x400px
+- Profile picture: 500x500px (square)

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dillu Shakeeb | Designer / Architect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Dillu Shakeeb | Designer and Architect Portfolio. Specialized in residential design, commercial, and retail architecture.">
+    <meta name="keywords" content="architect, interior design, portfolio, architecture, design, STR properties, airport, retail design">
+    <style>
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #121212;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .loader {
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
+        .loader:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #00bfa5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- Side Navigation -->
+    <nav class="side-nav">
+        <div class="brand">
+            <a href="#home">DS</a>
+        </div>
+        <ul class="nav-items">
+            <li class="nav-item">
+                <a class="nav-link active" href="#home">Home</a>
+                <div class="nav-indicator"></div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#about">About</a>
+                <div class="nav-indicator"></div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#projects">Projects</a>
+                <div class="nav-indicator"></div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#skills">Skills</a>
+                <div class="nav-indicator"></div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+                <div class="nav-indicator"></div>
+            </li>
+        </ul>
+        <div class="social-icon-container">
+            <a href="https://www.linkedin.com/in/dillu-shakeeb-663607288/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </nav>
+    
+    <!-- Mobile Navigation Toggle -->
+    <button class="mobile-nav-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <!-- WebGL background will be added with JS -->
+        </div>
+        <div class="hero-content">
+            <h1>
+                <span>Design.</span>
+                <span>Create.</span>
+                <span>Innovate.</span>
+            </h1>
+            <h2>Designer & Architect</h2>
+            <div class="hero-description">
+                With expertise in residential design, commercial architecture, and retail spaces, 
+                I create innovative environments that blend functionality with aesthetic excellence.
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <p>Scroll</p>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">ABOUT ME</h2>
+                    <div class="divider" data-aos="fade-up" data-aos-delay="100"></div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-4 mb-4 mb-lg-0" data-aos="fade-right">
+                    <div class="profile-img-container">
+                        <img src="assets/images/profile/profile-pic.png" alt="Dillu Shakeeb" class="img-fluid rounded-circle border border-5 border-primary">
+                    </div>
+                </div>
+                <div class="col-lg-8" data-aos="fade-left">
+                    <p>With a diverse background in multilevel residential design, commercial, and retail architecture, I am an architect and interior designer eager to explore new challenges and expand my expertise in creating innovative, impactful spaces.</p>
+                    <p>My experience includes designing and constructing apartments and multi-level homes in India, as well as developing food retail kiosks within prominent airports across the USA, including projects at DCA, MIA and DIA airports.</p>
+                    <p>I specialize in interior design for STR properties, conducting market and design trend research to create spaces that attract guests and optimize profitability. I handle everything from mood boards and furniture selection to expense reporting and on-site installations.</p>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h4>Education</h4>
+                            <ul class="list-unstyled">
+                                <li><strong>Bachelors in Architecture</strong></li>
+                                <li>Visvesvaraya Technological University, Karnataka, India</li>
+                                <li class="mt-2"><strong>Diploma in Interior Design</strong></li>
+                                <li>University of Calicut, Kerala, India</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Current Position</h4>
+                            <ul class="list-unstyled">
+                                <li><strong>Interior Designer</strong></li>
+                                <li>BNB Leverage | DEC 2024 - CURRENT</li>
+                                <li class="mt-2"><strong>Design Intern & Project Manager</strong></li>
+                                <li>oh zhoo, Denver | JAN 2023 - CURRENT</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title text-white" data-aos="fade-up">PROJECTS</h2>
+                    <div class="divider" data-aos="fade-up" data-aos-delay="100"></div>
+                </div>
+            </div>
+            
+            <!-- Project Filter Buttons -->
+            <div class="row mb-4">
+                <div class="col-lg-12 text-center" data-aos="fade-up">
+                    <div class="filter-button-group">
+                        <button class="filter-button active" data-filter="*">All Projects</button>
+                        <button class="filter-button" data-filter=".commercial">Commercial</button>
+                        <button class="filter-button" data-filter=".residential">Residential</button>
+                        <button class="filter-button" data-filter=".retail">Retail</button>
+                        <button class="filter-button" data-filter=".str">STR Properties</button>
+                        <button class="filter-button" data-filter=".architecture">Architecture</button>
+                        <button class="filter-button" data-filter=".interior">Interior Design</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project Gallery -->
+            <div class="row" id="project-grid">
+                <!-- Half Moon Empanadas -->
+                <div class="col-md-6 project-item commercial retail" data-aos="fade-up">
+                    <div class="project-card">
+                        <div class="project-img" style="background-image: url('assets/images/half-moon-dca/1-hero.png')"></div>
+                        <div class="project-overlay"></div>
+                        <div class="project-category">Commercial / Retail</div>
+                        <div class="project-info">
+                            <h3 class="project-title">Half Moon Empanadas</h3>
+                            <div class="project-description">Airport retail kiosk at DCA Washington showcasing innovative food service design.</div>
+                            <a href="projects/half-moon.html" class="project-link">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sample Residential Project -->
+                <div class="col-md-6 project-item residential" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card">
+                        <div class="project-img" style="background-image: url('assets/images/g1-duplex/1-hero.png')"></div>
+                        <div class="project-overlay"></div>
+                        <div class="project-category">Residential</div>
+                        <div class="project-info">
+                            <h3 class="project-title">G+1 Duplex</h3>
+                            <div class="project-description">Modern residential design blending aesthetic appeal with functional living spaces.</div>
+                            <a href="projects/duplex.html" class="project-link">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- STR Project -->
+                <div class="col-md-6 project-item str" data-aos="fade-up">
+                    <div class="project-card">
+                        <div class="project-img" style="background-image: url('assets/images/str-properties/1-living-room.png')"></div>
+                        <div class="project-overlay"></div>
+                        <div class="project-category">Short-Term Rental</div>
+                        <div class="project-info">
+                            <h3 class="project-title">Vacation Rental Design</h3>
+                            <div class="project-description">Optimized interior design for short-term rental properties focusing on guest experience.</div>
+                            <a href="projects/str-properties.html" class="project-link">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Farmhouse A-frame -->
+                <div class="col-md-6 project-item residential architecture" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card">
+                        <div class="project-img" style="background-image: url('assets/images/3d-renderings/1-render.png')"></div>
+                        <div class="project-overlay"></div>
+                        <div class="project-category">Residential / Architecture</div>
+                        <div class="project-info">
+                            <h3 class="project-title">Farmhouse A-Frame</h3>
+                            <div class="project-description">Contemporary rustic design concept blending traditional elements with modern sensibilities.</div>
+                            <a href="projects/farmhouse.html" class="project-link">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3D Renderings -->
+                <div class="col-md-6 project-item architecture" data-aos="fade-up">
+                    <div class="project-card">
+                        <div class="project-img" style="background-image: url('assets/images/3d-renderings/2-render.png')"></div>
+                        <div class="project-overlay"></div>
+                        <div class="project-category">Architecture</div>
+                        <div class="project-info">
+                            <h3 class="project-title">3D Architectural Renderings</h3>
+                            <div class="project-description">Photorealistic visualizations that bring architectural concepts to life before construction.</div>
+                            <a href="projects/3d-renderings.html" class="project-link">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Furniture Flipping Project -->
+                <div class="col-md-6 project-item interior" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card">
+                        <div class="project-img" style="background-image: url('assets/images/furniture-flipping/1-before.png')"></div>
+                        <div class="project-overlay"></div>
+                        <div class="project-category">Interior Design</div>
+                        <div class="project-info">
+                            <h3 class="project-title">Furniture Renovation</h3>
+                            <div class="project-description">Sustainable design approach transforming outdated furniture into contemporary pieces.</div>
+                            <a href="projects/furniture-flipping.html" class="project-link">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">TECHNICAL SKILLS</h2>
+                    <div class="divider" data-aos="fade-up" data-aos-delay="100"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up">
+                    <div class="skill-box text-center p-4">
+                        <i class="fa-solid fa-drafting-compass mb-3 fa-2x"></i>
+                        <h4>AUTOCAD</h4>
+                        <div class="skill-level" data-progress="95%">
+                            <div class="skill-progress"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-box text-center p-4">
+                        <i class="fa-solid fa-building mb-3 fa-2x"></i>
+                        <h4>REVIT</h4>
+                        <div class="skill-level" data-progress="90%">
+                            <div class="skill-progress"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-box text-center p-4">
+                        <i class="fa-solid fa-cube mb-3 fa-2x"></i>
+                        <h4>SKETCHUP</h4>
+                        <div class="skill-level" data-progress="95%">
+                            <div class="skill-progress"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-box text-center p-4">
+                        <i class="fa-solid fa-pen-to-square mb-3 fa-2x"></i>
+                        <h4>ADOBE CREATIVE SUITE</h4>
+                        <div class="skill-level" data-progress="85%">
+                            <div class="skill-progress"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="skill-box text-center p-4">
+                        <i class="fa-solid fa-file-word mb-3 fa-2x"></i>
+                        <h4>MICROSOFT OFFICE SUITE</h4>
+                        <div class="skill-level" data-progress="90%">
+                            <div class="skill-progress"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="skill-box text-center p-4">
+                        <i class="fa-solid fa-mountain-sun mb-3 fa-2x"></i>
+                        <h4>ENSCAPE</h4>
+                        <div class="skill-level" data-progress="85%">
+                            <div class="skill-progress"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="skill-box text-center p-4">
+                        <i class="fa-solid fa-film mb-3 fa-2x"></i>
+                        <h4>TWIN MOTION</h4>
+                        <div class="skill-level" data-progress="80%">
+                            <div class="skill-progress"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="700">
+                    <div class="skill-box text-center p-4">
+                        <i class="fa-solid fa-paintbrush mb-3 fa-2x"></i>
+                        <h4>3DS MAX</h4>
+                        <div class="skill-level" data-progress="75%">
+                            <div class="skill-progress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title" data-aos="fade-up">CONTACT</h2>
+                    <div class="divider" data-aos="fade-up" data-aos-delay="100"></div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="contact-info text-center mb-5">
+                        <p><i class="fa-solid fa-envelope me-2"></i> dillushakeeb@gmail.com</p>
+                        <p><i class="fa-solid fa-phone me-2"></i> +1 (720) 878 0283</p>
+                    </div>
+                    <form id="contact-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center text-white">
+        <div class="container">
+            <div class="social-icons mb-4">
+                <a href="https://www.linkedin.com/in/dillu-shakeeb-663607288/" target="_blank" class="me-3"><i class="fab fa-linkedin fa-2x"></i></a>
+            </div>
+            <p>© 2025 Dillu Shakeeb. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

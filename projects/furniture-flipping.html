@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture Flipping | Dillu Shakeeb</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .project-hero {
+            height: 50vh;
+            min-height: 400px;
+            background: url('../assets/images/furniture-flipping/2-after.png') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .project-hero .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .project-gallery {
+            margin-top: 40px;
+        }
+        
+        .project-gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        .specs-list li {
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #e6e6e6;
+            padding-bottom: 10px;
+        }
+        
+        .before-after {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .before-after .label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">DILLU SHAKEEB</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../index.html#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="overlay"></div>
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-8 mx-auto text-center text-white">
+                    <h1 class="fw-bold" data-aos="fade-up">Furniture Flipping</h1>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="200">Sustainable Furniture Renovation Projects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <h2 class="mb-4">Project Overview</h2>
+                    <p>As a side endeavor, I refurbish old furniture pieces and utilize them to design and decorate spaces affordably. By sourcing used furniture and repurposing it, I contribute to the creation of elegant, budget-friendly interior designs while promoting sustainability through the reuse of materials and reducing waste. I have gained hands-on experience using power tools, allowing me to navigate design and bring furniture pieces to life, combining creativity with technical skills.</p>
+                    
+                    <h3 class="mt-5 mb-4">Design Approach</h3>
+                    <p>My furniture flipping approach begins with finding quality pieces with good bones that have potential for transformation. I look for solid wood construction, interesting silhouettes, and pieces that can be structurally sound with some TLC. The design process involves envisioning how each piece can be transformed to match contemporary aesthetics while preserving its character and extending its lifecycle.</p>
+                    
+                    <p>Each piece undergoes careful preparation, repair, and refinishing. I employ various techniques including sanding, painting, staining, hardware replacement, and sometimes structural modifications. Special attention is given to detail work such as custom patterns, hand-painted elements, or decorative applications that make each piece unique and personalized.</p>
+                    
+                    <h3 class="mt-5 mb-4">Benefits</h3>
+                    <ul>
+                        <li>Sustainability through reuse of existing furniture</li>
+                        <li>Cost-effective interior design solutions</li>
+                        <li>Unique, one-of-a-kind pieces with character and history</li>
+                        <li>Customization to match specific design needs and aesthetics</li>
+                        <li>Reduction of furniture waste in landfills</li>
+                        <li>Support for circular economy principles</li>
+                    </ul>
+                    
+                    <!-- Project Gallery -->
+                    <div class="project-gallery">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="before-after">
+                                    <img src="../assets/images/furniture-flipping/1-before.png" alt="Furniture - Before Transformation" class="project-gallery-image">
+                                    <span class="label">BEFORE</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="before-after">
+                                    <img src="../assets/images/furniture-flipping/2-after.png" alt="Furniture - After Transformation" class="project-gallery-image">
+                                    <span class="label">AFTER</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="../assets/images/furniture-flipping/3-detail.png" alt="Furniture Detail" class="project-gallery-image">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="../assets/images/furniture-flipping/4-process.png" alt="Furniture Transformation Process" class="project-gallery-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title">Project Specifications</h4>
+                            <ul class="list-unstyled specs-list">
+                                <li><strong>Project Type:</strong> Furniture Renovation</li>
+                                <li><strong>Focus:</strong> Sustainability, Upcycling, Interior Design</li>
+                                <li><strong>Materials:</strong> Reclaimed furniture, quality paints, stains, hardware</li>
+                                <li><strong>Techniques:</strong> Sanding, painting, staining, upholstery, hardware replacement</li>
+                                <li><strong>Tools Used:</strong> Power tools, hand tools, painting equipment</li>
+                                <li><strong>Average Timeline:</strong> 2-4 days per piece</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Transformation Process</h4>
+                            <ol class="specs-list">
+                                <li><strong>Selection:</strong> Finding quality pieces with potential</li>
+                                <li><strong>Concept:</strong> Design planning and visualization</li>
+                                <li><strong>Preparation:</strong> Cleaning, sanding, and structural repairs</li>
+                                <li><strong>Refinishing:</strong> Painting, staining, or other finishes</li>
+                                <li><strong>Detail Work:</strong> Hardware replacement, decorative elements</li>
+                                <li><strong>Finishing:</strong> Protective coatings and final touches</li>
+                                <li><strong>Integration:</strong> Placement in interior design context</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h4 class="card-title">Sustainability Impact</h4>
+                            <div class="specs-list">
+                                <p><strong>Material Conservation:</strong> Each piece repurposed saves raw materials needed for new furniture</p>
+                                <p><strong>Waste Reduction:</strong> Prevents furniture items from entering landfills</p>
+                                <p><strong>Carbon Footprint:</strong> Lower environmental impact compared to manufacturing new pieces</p>
+                                <p><strong>Chemical Reduction:</strong> Using eco-friendly paints and finishes when possible</p>
+                                <p><strong>Educational Value:</strong> Demonstrating the potential of furniture reuse</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Projects -->
+            <div class="mt-5 pt-5 border-top">
+                <h3 class="text-center mb-4" data-aos="fade-up">Related Projects</h3>
+                <div class="row">
+                    <div class="col-md-4" data-aos="fade-up">
+                        <div class="card project-card">
+                            <div class="card-img-top project-img" style="background-image: url('../assets/images/str-properties/1-living-room.png')"></div>
+                            <div class="card-body">
+                                <h5 class="card-title">STR Properties</h5>
+                                <p class="card-text">Interior Design for Vacation Rentals</p>
+                                <a href="str-properties.html" class="btn btn-sm btn-primary">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card project-card">
+                            <div class="card-img-top project-img" style="background-image: url('../assets/images/vinyl-wraps/1-design.png')"></div>
+                            <div class="card-body">
+                                <h5 class="card-title">Custom Vinyl Wraps</h5>
+                                <p class="card-text">Snowboard and Ski Designs</p>
+                                <a href="vinyl-wraps.html" class="btn btn-sm btn-primary">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card project-card">
+                            <div class="card-img-top project-img" style="background-image: url('../assets/images/3d-renderings/1-render.png')"></div>
+                            <div class="card-body">
+                                <h5 class="card-title">3D Architectural Renderings</h5>
+                                <p class="card-text">Various residential projects</p>
+                                <a href="3d-renderings.html" class="btn btn-sm btn-primary">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="../index.html#projects" class="btn btn-primary">Back to All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center text-white">
+        <div class="container">
+            <div class="social-icons mb-4">
+                <a href="https://www.linkedin.com/in/dillu-shakeeb-663607288/" target="_blank" class="me-3"><i class="fab fa-linkedin fa-2x"></i></a>
+            </div>
+            <p>© 2025 Dillu Shakeeb. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+        
+        // Image lightbox effect
+        $('.project-gallery-image').click(function() {
+            let imgSrc = $(this).attr('src');
+            let imgAlt = $(this).attr('alt');
+            
+            $('body').append(`
+                <div class="lightbox">
+                    <span class="lightbox-close">&times;</span>
+                    <img class="lightbox-content" src="${imgSrc}">
+                    <div class="lightbox-caption">${imgAlt}</div>
+                </div>
+            `);
+            
+            $('.lightbox').fadeIn('fast');
+            
+            // Close lightbox on click
+            $('.lightbox, .lightbox-close').click(function() {
+                $('.lightbox').fadeOut('fast', function() {
+                    $(this).remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
