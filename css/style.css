@@ -809,10 +809,11 @@ p {
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    padding: 8px 0;
+    padding: 8px 15px;
     position: relative;
     transition: var(--transition-fast);
     cursor: pointer;
+    margin: 0 5px;
 }
 
 .filter-button::after {
@@ -834,6 +835,11 @@ p {
 .filter-button:hover::after,
 .filter-button.active::after {
     width: 100%;
+}
+
+/* Make sure project items display properly */
+.project-item {
+    transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 /* Skills Section */

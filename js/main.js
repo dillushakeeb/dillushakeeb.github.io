@@ -3,7 +3,8 @@
 * Designer / Architect Portfolio Website
 */
 
-$(document).ready(function() {
+// Make sure jQuery is properly loaded
+jQuery(document).ready(function($) {
     // Initialize custom cursor
     const cursor = document.createElement('div');
     cursor.classList.add('cursor');
@@ -96,40 +97,8 @@ $(document).ready(function() {
         });
     });
     
-    // Initialize project filtering with Isotope
-    let $grid = $('#project-grid').isotope({
-        itemSelector: '.project-item',
-        layoutMode: 'fitRows',
-        transitionDuration: '0.8s',
-        stagger: 100,
-        originLeft: true
-    });
-    
-    // Filter items on button click
-    $('.filter-button-group').on('click', '.filter-button', function() {
-        let filterValue = $(this).attr('data-filter');
-        $grid.isotope({ 
-            filter: filterValue,
-            // Add animation when filtering
-            hiddenStyle: {
-                opacity: 0,
-                transform: 'scale(0.8)'
-            },
-            visibleStyle: {
-                opacity: 1,
-                transform: 'scale(1)'
-            }
-        });
-        
-        // Change active class
-        $('.filter-button-group .filter-button').removeClass('active');
-        $(this).addClass('active');
-    });
-    
-    // Layout Isotope after images have loaded
-    $grid.imagesLoaded().progress(function() {
-        $grid.isotope('layout');
-    });
+    // Filtering functionality moved to inline script at the end of the HTML file
+    // to ensure it runs after all other scripts are loaded
     
     // Contact form handling with animations
     $('#contact-form').submit(function(e) {
