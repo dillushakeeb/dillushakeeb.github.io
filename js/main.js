@@ -133,7 +133,7 @@ $(document).ready(function() {
     
     // Contact form handling with animations
     $('#contact-form').submit(function(e) {
-        e.preventDefault();
+        // Don't prevent default - we want the form to submit to Formspree
         
         // Form validation
         let valid = true;
@@ -141,6 +141,7 @@ $(document).ready(function() {
             if ($(this).val().trim() === '') {
                 valid = false;
                 $(this).addClass('is-invalid');
+                e.preventDefault(); // Only prevent if validation fails
             } else {
                 $(this).removeClass('is-invalid');
             }
@@ -150,26 +151,13 @@ $(document).ready(function() {
             return false;
         }
         
-        // Get form data
-        let name = $(this).find('input[type="text"]').val();
-        let email = $(this).find('input[type="email"]').val();
-        let message = $(this).find('textarea').val();
-        
-        // Show success message
+        // Show sending animation
         const submitButton = $(this).find('button[type="submit"]');
         submitButton.html('<i class="fas fa-circle-notch fa-spin"></i> Sending...');
         submitButton.prop('disabled', true);
         
-        // Simulate form submission (replace with actual API call)
-        setTimeout(function() {
-            $('#contact-form').trigger('reset');
-            submitButton.html('Message Sent!');
-            
-            setTimeout(function() {
-                submitButton.html('Send Message');
-                submitButton.prop('disabled', false);
-            }, 3000);
-        }, 1500);
+        // The form will be handled by Formspree
+        // We don't need to handle success/error manually
     });
     
     // Initialize WebGL background for hero section
