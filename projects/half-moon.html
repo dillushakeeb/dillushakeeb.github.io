@@ -280,90 +280,117 @@
             margin-bottom: 4px;
         }
         
-        .related-projects {
-            margin-top: var(--spacing-xl);
-            padding-top: var(--spacing-xl);
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        .location-section {
+            margin-top: 80px;
+            padding-top: 60px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
         
-        .related-projects h3 {
-            font-size: 2rem;
-            margin-bottom: var(--spacing-lg);
+        .location-section:first-of-type {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
         }
         
-        .related-project {
-            margin-bottom: var(--spacing-lg);
-            transition: transform 0.3s ease;
+        .location-badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            border-radius: 3px;
         }
         
-        .related-project:hover {
-            transform: translateY(-10px);
+        .before-after-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            margin: var(--spacing-xl) 0;
         }
         
-        .related-project img {
+        .before-after {
+            position: relative;
+        }
+        
+        .before-after img {
             width: 100%;
-            height: 280px;
+            height: 300px;
             object-fit: cover;
-            margin-bottom: var(--spacing-sm);
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            filter: grayscale(20%);
         }
         
-        .related-project:hover img {
+        .before-after img:hover {
+            transform: scale(1.02);
+            filter: grayscale(0%);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
-        .related-project h4 {
-            font-size: 1.2rem;
-            margin: var(--spacing-sm) 0;
-            font-weight: 700;
-        }
-        
-        .related-project p {
-            color: var(--text-light);
-            font-size: 1rem;
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .back-to-projects {
-            display: inline-flex;
-            align-items: center;
-            margin-top: var(--spacing-xl);
-            color: var(--text-color);
-            font-weight: 600;
-            text-decoration: none;
-            position: relative;
-            transition: all 0.3s ease;
-            padding: var(--spacing-sm) 0;
-            padding-left: 25px; /* Make room for the arrow */
-        }
-        
-        .back-to-projects:before {
-            content: '←';
+        .before-after .label {
             position: absolute;
-            left: 0;
-            margin-right: 8px;
-            transition: transform 0.3s ease;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 3px;
+            z-index: 1;
         }
         
-        .back-to-projects:hover {
+        .location-tabs {
+            display: flex;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 10px;
+        }
+        
+        .location-tab {
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-color);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .location-tab:hover {
             color: var(--accent-color);
         }
         
-        .back-to-projects:hover:before {
-            transform: translateX(-5px);
+        .location-tab.active {
             color: var(--accent-color);
+            border-bottom: 3px solid var(--accent-color);
         }
         
         /* Lightbox improvements */
         .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
             backdrop-filter: blur(8px);
         }
         
         .lightbox-content {
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-            border: 10px solid white;
             max-width: 80%;
             max-height: 80vh;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border: 10px solid white;
         }
         
         .lightbox-caption {
@@ -372,13 +399,22 @@
             padding: 12px 20px;
             border-radius: 0 0 4px 4px;
             font-weight: 500;
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            text-align: center;
         }
         
         .lightbox-close {
-            font-size: 2rem;
-            color: white;
+            position: absolute;
             top: 30px;
             right: 30px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            z-index: 10000;
         }
         
         /* Responsive adjustments */
@@ -405,6 +441,10 @@
             footer {
                 margin-left: 0;
             }
+            
+            .before-after-container {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
@@ -420,6 +460,15 @@
             .project-gallery {
                 grid-template-columns: 1fr;
                 grid-template-rows: repeat(4, 250px);
+            }
+            
+            .location-tabs {
+                flex-direction: column;
+            }
+            
+            .location-tab {
+                margin-bottom: 10px;
+                text-align: center;
             }
         }
         
@@ -475,7 +524,7 @@
         <div class="container">
             <div class="project-badge">Retail / Airport</div>
             <h1>Half Moon Empanadas</h1>
-            <div class="location">Ronald Reagan Washington National Airport, Rm B2-606 & B1-673A STORAGE, Bldg 12201</div>
+            <div class="location">Multiple Airport Locations Across the USA</div>
         </div>
         <div class="scroll-hint">
             Scroll
@@ -486,93 +535,311 @@
     <!-- Project Details -->
     <section class="project-details">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <h2>Project Overview</h2>
-                    <p>Engaged in conceptual layout and massing for the kiosk, selected equipment, and conducted detailed 3D modeling. Additionally, contributed to signage and graphics design. Transitioned to project management during the construction phase, overseeing vendor selection for millwork, signage, equipment procurement, IT, and low-voltage data. Led the bidding process for general contractors, orchestrated weekly project meetings with all vendors, ensuring schedule adherence.</p>
-                    
-                    <h3>Design Approach</h3>
-                    <p>The design approach focused on creating a vibrant, eye-catching kiosk that would attract travelers in the busy airport environment. The bold pink color scheme and geometric patterns were chosen to make the brand stand out, while the layout was optimized for efficiency in a high-volume, fast-paced setting.</p>
-                    
-                    <h3>Construction Management</h3>
-                    <p>As the project manager during construction, I coordinated between multiple vendors including millwork fabricators, signage manufacturers, equipment suppliers, IT specialists, and general contractors. Weekly progress meetings were established to ensure all parties were aligned and that the project remained on schedule. I managed the bidding process for selecting the general contractor, evaluating proposals based on cost, timeline, and quality of work.</p>
-                    
-                    <!-- Project Gallery -->
-                    <div class="project-gallery">
-                        <img src="../assets/images/halfmoon-empanadas/HM_DCA1.jpg" alt="Half Moon Kiosk - Front View" class="project-gallery-image">
-                        <img src="../assets/images/halfmoon-empanadas/HM_DCA2.jpg" alt="Half Moon Kiosk - Side View" class="project-gallery-image">
-                        <img src="../assets/images/halfmoon-empanadas/HM_DCA_FLOORPLAN.jpg" alt="Half Moon Kiosk - Floor Plan" class="project-gallery-image">
-                        <img src="../assets/images/halfmoon-empanadas/HM_DCA_ELEVATION.jpg" alt="Half Moon Kiosk - Elevation" class="project-gallery-image">
+            <h2>Project Overview</h2>
+            <p>A comprehensive portfolio of design and project management work for Half Moon Empanadas across multiple airport locations in the United States. These projects involved conceptual layout design, massing, equipment selection, 3D modeling, signage design, and overseeing the construction phase as project manager. The kiosks were designed to attract travelers in busy airport environments while optimizing operations in a high-volume, fast-paced setting.</p>
+            
+            <div class="location-tabs">
+                <div class="location-tab active" data-location="dca">Washington DCA</div>
+                <div class="location-tab" data-location="den">Denver DEN</div>
+                <div class="location-tab" data-location="mia">Miami MIA</div>
+                <div class="location-tab" data-location="aus">Austin AUS</div>
+                <div class="location-tab" data-location="pvd">Providence PVD</div>
+            </div>
+            
+            <!-- Washington DCA Location -->
+            <div class="location-section" id="dca-location">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="location-badge">Washington DCA</div>
+                        <h3>Ronald Reagan Washington National Airport</h3>
+                        <p>The Washington DCA location design involved creating a vibrant, eye-catching kiosk to attract travelers in the busy airport environment. The bold pink color scheme and geometric patterns were chosen to make the brand stand out, while the layout was optimized for efficiency in a high-volume, fast-paced setting.</p>
+                        
+                        <p>As the project manager during construction, I coordinated between multiple vendors including millwork fabricators, signage manufacturers, equipment suppliers, IT specialists, and general contractors. Weekly progress meetings were established to ensure all parties were aligned and that the project remained on schedule. I managed the bidding process for selecting the general contractor, evaluating proposals based on cost, timeline, and quality of work.</p>
+                        
+                        <!-- DCA Project Gallery -->
+                        <div class="project-gallery">
+                            <img src="../assets/images/halfmoon-empanadas/HM_DCA.jpg" alt="Half Moon DCA - Exterior View" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HM_DCA1.jpg" alt="Half Moon DCA - Front View" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HM_DCA2.jpg" alt="Half Moon DCA - Side View" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HMA_DCA_REAL.jpg" alt="Half Moon DCA - Completed Kiosk" class="project-gallery-image">
+                        </div>
+                        
+                        <h3>Technical Drawings</h3>
+                        <div class="project-gallery">
+                            <img src="../assets/images/halfmoon-empanadas/HM_DCA_FLOORPLAN.jpg" alt="Half Moon DCA - Floor Plan" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HM_DCA_ELEVATION.jpg" alt="Half Moon DCA - Elevation" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HM_DCA_ELEVATION1.jpg" alt="Half Moon DCA - Elevation Detail 1" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HM_DCA_ELEVATION2.jpg" alt="Half Moon DCA - Elevation Detail 2" class="project-gallery-image">
+                        </div>
                     </div>
-                </div>
-                
-                <div class="col-lg-4 project-sidebar">
-                    <div class="project-specs">
-                        <h3>Project Specifications</h3>
-                        <ul class="list-unstyled specs-list">
-                            <li><strong>Client:</strong> Half Moon Empanadas</li>
-                            <li><strong>Location:</strong> Ronald Reagan Washington National Airport</li>
-                            <li><strong>Year:</strong> 2023</li>
-                            <li><strong>Size:</strong> 450 sq ft</li>
-                            <li><strong>Project Type:</strong> Commercial / Retail</li>
-                            <li><strong>Services:</strong> Architectural Design, 3D Modeling, Project Management</li>
-                            <li><strong>Software Used:</strong> AutoCAD, SketchUp, Adobe Creative Suite</li>
-                        </ul>
-                    </div>
                     
-                    <div class="project-specs">
-                        <h3>Project Timeline</h3>
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <strong>January 2023</strong>
-                                <p>Initial concept design</p>
-                            </div>
-                            <div class="timeline-item">
-                                <strong>February 2023</strong>
-                                <p>Detailed design and equipment selection</p>
-                            </div>
-                            <div class="timeline-item">
-                                <strong>March 2023</strong>
-                                <p>3D modeling and visualization</p>
-                            </div>
-                            <div class="timeline-item">
-                                <strong>April 2023</strong>
-                                <p>Vendor selection and bidding process</p>
-                            </div>
-                            <div class="timeline-item">
-                                <strong>May-June 2023</strong>
-                                <p>Construction management and implementation</p>
-                            </div>
-                            <div class="timeline-item">
-                                <strong>July 2023</strong>
-                                <p>Grand opening</p>
+                    <div class="col-lg-4 project-sidebar">
+                        <div class="project-specs">
+                            <h3>Project Specifications</h3>
+                            <ul class="list-unstyled specs-list">
+                                <li><strong>Client:</strong> Half Moon Empanadas</li>
+                                <li><strong>Location:</strong> Ronald Reagan Washington National Airport</li>
+                                <li><strong>Year:</strong> 2023</li>
+                                <li><strong>Size:</strong> 450 sq ft</li>
+                                <li><strong>Project Type:</strong> Commercial / Retail</li>
+                                <li><strong>Services:</strong> Architectural Design, 3D Modeling, Project Management</li>
+                                <li><strong>Software Used:</strong> AutoCAD, SketchUp, Adobe Creative Suite</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-specs">
+                            <h3>Project Timeline</h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <strong>January 2023</strong>
+                                    <p>Initial concept design</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>February 2023</strong>
+                                    <p>Detailed design and equipment selection</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>March 2023</strong>
+                                    <p>3D modeling and visualization</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>April 2023</strong>
+                                    <p>Vendor selection and bidding process</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>May-June 2023</strong>
+                                    <p>Construction management and implementation</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>July 2023</strong>
+                                    <p>Grand opening</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Related Projects -->
-            <div class="related-projects">
-                <h3>Related Projects</h3>
+            <!-- Denver DEN Location -->
+            <div class="location-section" id="den-location" style="display: none;">
                 <div class="row">
-                    <div class="col-md-4 related-project">
-                        <img src="../assets/images/halfmoon-empanadas/MIA1_AFTER.jpg" alt="Half Moon Empanadas - MIA">
-                        <h4>Half Moon Empanadas - MIA</h4>
-                        <p>Miami International Airport location renovation</p>
-                        <a href="halfmoon-mia.html" class="project-link">View Project</a>
+                    <div class="col-lg-8">
+                        <div class="location-badge">Denver DEN</div>
+                        <h3>Denver International Airport</h3>
+                        <p>The Denver International Airport location incorporates a unique bike-themed design element while maintaining brand consistency. This location was designed to accommodate higher traffic volumes with an expanded preparation area and service counter. The distinctive branding and layout ensure visibility in the busy concourse environment.</p>
+                        
+                        <p>For this location, we incorporated local Denver culture by integrating a bicycle theme into the design, creating a memorable visual feature that would resonate with the local audience while maintaining the core Half Moon Empanadas brand identity. The layout was optimized for faster service times during peak airport hours.</p>
+                        
+                        <!-- DEN Project Gallery -->
+                        <div class="project-gallery">
+                            <img src="../assets/images/halfmoon-empanadas/hme_den.jpg" alt="Half Moon Denver - Overview" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HEM DEN 1.png" alt="Half Moon Denver - Design Concept" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HME DEN 2.png" alt="Half Moon Denver - Layout" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HME DEN 3.png" alt="Half Moon Denver - Perspective" class="project-gallery-image">
+                        </div>
+                        
+                        <h3>Bicycle Feature Design</h3>
+                        <div class="project-gallery">
+                            <img src="../assets/images/halfmoon-empanadas/HME_DENBIKE.jpg" alt="Half Moon Denver - Bicycle Feature" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HME_DENBIKE1.jpg" alt="Half Moon Denver - Bicycle Detail 1" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HME_DENBIKE2.jpg" alt="Half Moon Denver - Bicycle Detail 2" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HME_DENBIKE3.jpg" alt="Half Moon Denver - Bicycle Detail 3" class="project-gallery-image">
+                        </div>
+                        
+                        <div class="project-gallery">
+                            <img src="../assets/images/halfmoon-empanadas/HME DEN 4.png" alt="Half Moon Denver - Additional View" class="project-gallery-image">
+                        </div>
                     </div>
-                    <div class="col-md-4 related-project">
-                        <img src="../assets/images/halfmoon-empanadas/hme_den.jpg" alt="Half Moon Empanadas - Denver">
-                        <h4>Half Moon Empanadas - DEN</h4>
-                        <p>Denver International Airport</p>
-                        <a href="halfmoon-den.html" class="project-link">View Project</a>
+                    
+                    <div class="col-lg-4 project-sidebar">
+                        <div class="project-specs">
+                            <h3>Project Specifications</h3>
+                            <ul class="list-unstyled specs-list">
+                                <li><strong>Client:</strong> Half Moon Empanadas</li>
+                                <li><strong>Location:</strong> Denver International Airport</li>
+                                <li><strong>Year:</strong> 2023</li>
+                                <li><strong>Size:</strong> 520 sq ft</li>
+                                <li><strong>Project Type:</strong> Commercial / Retail</li>
+                                <li><strong>Services:</strong> Architectural Design, 3D Modeling, Project Management</li>
+                                <li><strong>Software Used:</strong> AutoCAD, SketchUp, Adobe Creative Suite</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-specs">
+                            <h3>Design Features</h3>
+                            <ul class="list-unstyled specs-list">
+                                <li><strong>Bicycle Theme:</strong> Custom-designed bicycle installation representing Denver's bike-friendly culture</li>
+                                <li><strong>Enhanced Service Area:</strong> Expanded counter space to accommodate higher customer volume</li>
+                                <li><strong>Improved Queuing:</strong> Optimized customer flow for efficient traffic management</li>
+                                <li><strong>Brand Consistency:</strong> Maintained Half Moon Empanadas' signature color scheme and aesthetic while incorporating local elements</li>
+                                <li><strong>Visibility Features:</strong> Strategic signage placement to capture attention in the busy concourse</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-md-4 related-project">
-                        <img src="../assets/images/halfmoon-empanadas/hme_pvd.jpg" alt="Half Moon Empanadas - Providence">
-                        <h4>Half Moon Empanadas - PVD</h4>
-                        <p>Providence Airport</p>
-                        <a href="halfmoon-pvd.html" class="project-link">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Miami MIA Location -->
+            <div class="location-section" id="mia-location" style="display: none;">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="location-badge">Miami MIA</div>
+                        <h3>Miami International Airport</h3>
+                        <p>The Miami International Airport project involved renovating existing kiosk locations to align with updated brand standards while improving operational efficiency. The design preserved valuable aspects of the original locations while introducing contemporary elements to refresh the customer experience in Half Moon Empanadas' home market.</p>
+                        
+                        <h3>MIA Location 1 Renovation</h3>
+                        <p>This renovation transformed an outdated kiosk into a modern service point reflecting the current Half Moon Empanadas brand identity. The redesign focused on improving customer visibility, enhancing the ordering process, and creating a more welcoming atmosphere.</p>
+                        
+                        <!-- MIA1 Before-After -->
+                        <div class="before-after-container">
+                            <div class="before-after">
+                                <div class="label">BEFORE</div>
+                                <img src="../assets/images/halfmoon-empanadas/MIA1_BEFORE.jpg" alt="Half Moon Miami 1 - Before Renovation" class="project-gallery-image">
+                            </div>
+                            <div class="before-after">
+                                <div class="label">AFTER</div>
+                                <img src="../assets/images/halfmoon-empanadas/MIA1_AFTER.jpg" alt="Half Moon Miami 1 - After Renovation" class="project-gallery-image">
+                            </div>
+                        </div>
+                        
+                        <div class="project-gallery">
+                            <img src="../assets/images/halfmoon-empanadas/MIA1_PLAN.jpg" alt="Half Moon Miami 1 - Floor Plan" class="project-gallery-image">
+                        </div>
+                        
+                        <h3>MIA Location 2 Renovation</h3>
+                        <p>The second Miami location required a different approach due to its unique space constraints and positioning within the terminal. The renovation improved visibility from multiple approach angles and created a more efficient service flow for staff during peak hours.</p>
+                        
+                        <!-- MIA2 Before-After -->
+                        <div class="before-after-container">
+                            <div class="before-after">
+                                <div class="label">BEFORE</div>
+                                <img src="../assets/images/halfmoon-empanadas/MIA2_BEFORE.jpeg" alt="Half Moon Miami 2 - Before Renovation" class="project-gallery-image">
+                            </div>
+                            <div class="before-after">
+                                <div class="label">AFTER</div>
+                                <img src="../assets/images/halfmoon-empanadas/MIA2.jpg" alt="Half Moon Miami 2 - After Renovation" class="project-gallery-image">
+                            </div>
+                        </div>
+                        
+                        <div class="project-gallery">
+                            <img src="../assets/images/halfmoon-empanadas/MIA2_1.jpg" alt="Half Moon Miami 2 - Additional View 1" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/MIA2_2.jpg" alt="Half Moon Miami 2 - Additional View 2" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/MIA2_PLAN.jpg" alt="Half Moon Miami 2 - Floor Plan" class="project-gallery-image">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 project-sidebar">
+                        <div class="project-specs">
+                            <h3>Project Specifications</h3>
+                            <ul class="list-unstyled specs-list">
+                                <li><strong>Client:</strong> Half Moon Empanadas</li>
+                                <li><strong>Location:</strong> Miami International Airport</li>
+                                <li><strong>Year:</strong> 2023</li>
+                                <li><strong>Size:</strong> 380 sq ft (Location 1), 420 sq ft (Location 2)</li>
+                                <li><strong>Project Type:</strong> Renovation / Retail</li>
+                                <li><strong>Services:</strong> Architectural Design, Project Management, Construction Oversight</li>
+                                <li><strong>Software Used:</strong> AutoCAD, Adobe Creative Suite</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-specs">
+                            <h3>Renovation Strategy</h3>
+                            <ul class="list-unstyled specs-list">
+                                <li><strong>Brand Modernization:</strong> Updated visuals to align with current brand standards</li>
+                                <li><strong>Operational Efficiency:</strong> Improved staff workflow and service speed</li>
+                                <li><strong>Customer Experience:</strong> Enhanced visibility and approachability</li>
+                                <li><strong>Cost Management:</strong> Strategic updates to achieve maximum impact within budget</li>
+                                <li><strong>Minimized Downtime:</strong> Carefully phased construction to reduce closure periods</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Austin AUS Location -->
+            <div class="location-section" id="aus-location" style="display: none;">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="location-badge">Austin AUS</div>
+                        <h3>Austin-Bergstrom International Airport</h3>
+                        <p>The Austin-Bergstrom International Airport location incorporates elements of local Austin culture while maintaining the core Half Moon Empanadas brand identity. The design features a vibrant color palette, efficient spatial organization, and strategic positioning to maximize visibility in the terminal.</p>
+                        
+                        <!-- AUS Project Gallery -->
+                        <div class="project-gallery">
+                            <img src="../assets/images/halfmoon-empanadas/HM_AUS.jpeg" alt="Half Moon Austin - Overview" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HM_AUS1.jpeg" alt="Half Moon Austin - View 1" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HM_AUS2.jpeg" alt="Half Moon Austin - View 2" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/HM_AUS3.jpeg" alt="Half Moon Austin - View 3" class="project-gallery-image">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 project-sidebar">
+                        <div class="project-specs">
+                            <h3>Project Specifications</h3>
+                            <ul class="list-unstyled specs-list">
+                                <li><strong>Client:</strong> Half Moon Empanadas</li>
+                                <li><strong>Location:</strong> Austin-Bergstrom International Airport</li>
+                                <li><strong>Year:</strong> 2024</li>
+                                <li><strong>Size:</strong> 480 sq ft</li>
+                                <li><strong>Project Type:</strong> Commercial / Retail</li>
+                                <li><strong>Services:</strong> Architectural Design, 3D Modeling, Project Management</li>
+                                <li><strong>Software Used:</strong> AutoCAD, SketchUp, Adobe Creative Suite</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-specs">
+                            <h3>Design Approach</h3>
+                            <ul class="list-unstyled specs-list">
+                                <li><strong>Local Integration:</strong> Incorporated Austin-specific elements into the design</li>
+                                <li><strong>Operational Efficiency:</strong> Optimized layout for high-volume service</li>
+                                <li><strong>Brand Alignment:</strong> Maintained consistency with the Half Moon Empanadas identity</li>
+                                <li><strong>Visual Impact:</strong> Created high-visibility design to attract travelers</li>
+                                <li><strong>Customer Flow:</strong> Designed intuitive queuing and service patterns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Providence PVD Location -->
+            <div class="location-section" id="pvd-location" style="display: none;">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="location-badge">Providence PVD</div>
+                        <h3>Rhode Island T.F. Green International Airport</h3>
+                        <p>The Rhode Island T.F. Green International Airport location represents the expansion of Half Moon Empanadas into the Northeast market. This design adapts the brand's signature style to appeal to the New England aesthetic while maintaining core brand elements that customers recognize.</p>
+                        
+                        <!-- PVD Project Gallery -->
+                        <div class="project-gallery">
+                            <img src="../assets/images/halfmoon-empanadas/hme_pvd.jpg" alt="Half Moon Providence - Overview" class="project-gallery-image">
+                            <img src="../assets/images/halfmoon-empanadas/PVD HME.jpg" alt="Half Moon Providence - Design" class="project-gallery-image">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 project-sidebar">
+                        <div class="project-specs">
+                            <h3>Project Specifications</h3>
+                            <ul class="list-unstyled specs-list">
+                                <li><strong>Client:</strong> Half Moon Empanadas</li>
+                                <li><strong>Location:</strong> Rhode Island T.F. Green International Airport</li>
+                                <li><strong>Year:</strong> 2023</li>
+                                <li><strong>Size:</strong> 410 sq ft</li>
+                                <li><strong>Project Type:</strong> Commercial / Retail</li>
+                                <li><strong>Services:</strong> Architectural Design, 3D Modeling, Project Management</li>
+                                <li><strong>Software Used:</strong> AutoCAD, SketchUp, Adobe Creative Suite</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-specs">
+                            <h3>Market Adaptation</h3>
+                            <ul class="list-unstyled specs-list">
+                                <li><strong>Regional Considerations:</strong> Adapted design elements for Northeast audience preferences</li>
+                                <li><strong>Compact Efficiency:</strong> Optimized smaller footprint for maximum operational effectiveness</li>
+                                <li><strong>Brand Consistency:</strong> Maintained Half Moon Empanadas identity in a new market</li>
+                                <li><strong>Visibility Strategy:</strong> Emphasized brand recognition for travelers unfamiliar with the concept</li>
+                                <li><strong>Climate Adaptation:</strong> Incorporated materials and finishes suitable for New England conditions</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -593,6 +860,13 @@
         </div>
     </footer>
 
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content">
+        <div class="lightbox-caption"></div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
@@ -606,27 +880,42 @@
             mirror: false
         });
         
+        // Location tabs
+        $('.location-tab').click(function() {
+            // Get the location ID
+            const location = $(this).data('location');
+            
+            // Hide all location sections
+            $('.location-section').hide();
+            
+            // Show the selected location section
+            $(`#${location}-location`).show();
+            
+            // Update active tab
+            $('.location-tab').removeClass('active');
+            $(this).addClass('active');
+            
+            // Scroll to the location section
+            $('html, body').animate({
+                scrollTop: $(`#${location}-location`).offset().top - 120
+            }, 500);
+        });
+        
         // Image lightbox effect
         $('.project-gallery-image').click(function() {
             let imgSrc = $(this).attr('src');
             let imgAlt = $(this).attr('alt');
             
-            $('body').append(`
-                <div class="lightbox">
-                    <span class="lightbox-close">&times;</span>
-                    <img class="lightbox-content" src="${imgSrc}">
-                    <div class="lightbox-caption">${imgAlt}</div>
-                </div>
-            `);
-            
-            $('.lightbox').fadeIn('fast');
-            
-            // Close lightbox on click
-            $('.lightbox, .lightbox-close').click(function() {
-                $('.lightbox').fadeOut('fast', function() {
-                    $(this).remove();
-                });
-            });
+            $('.lightbox-content').attr('src', imgSrc);
+            $('.lightbox-caption').text(imgAlt);
+            $('.lightbox').css('display', 'flex').fadeIn('fast');
+        });
+        
+        // Close lightbox on click
+        $('.lightbox, .lightbox-close').click(function(e) {
+            if (e.target !== $('.lightbox-content')[0]) {
+                $('.lightbox').fadeOut('fast');
+            }
         });
     </script>
 </body>
