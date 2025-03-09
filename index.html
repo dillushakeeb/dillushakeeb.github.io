@@ -86,6 +86,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero-section">
+        <div class="hero-background"></div>
         <div class="hero-content">
             <h1>
                 Creating Spaces<br>
@@ -279,8 +280,8 @@
                     </a>
                     <div class="project-category">Graphics & Design</div>
                     <div class="project-info">
-                        <h3 class="project-title">Vinyl Wrap Designs</h3>
-                        <div class="project-description">Custom vinyl wrap designs for commercial and retail applications combining aesthetics with brand identity.</div>
+                        <h3 class="project-title">Snowboard Wraps</h3>
+                        <div class="project-description">Custom vinyl wrap designs for snowboards and skis combining aesthetics with protection.</div>
                         <a href="projects/vinyl-wraps.html" class="project-link">View Case Study</a>
                     </div>
                 </div>
@@ -417,24 +418,75 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="js/main.js"></script>
     
-    <!-- Custom filtering script -->
+    <!-- Custom filtering script with audio feedback -->
     <script>
         $(document).ready(function() {
+            // Create audio context for subtle interaction sounds
+            let audioContext;
+            
+            // Initialize audio context on first user interaction
+            function initAudio() {
+                if (!audioContext) {
+                    try {
+                        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        document.removeEventListener('click', initAudio);
+                    } catch (e) {
+                        console.log('Web Audio API not supported');
+                    }
+                }
+            }
+            
+            // Add listener to initialize audio
+            document.addEventListener('click', initAudio);
+            
+            // Function to play click sound
+            function playClickSound(freq = 800, volume = 0.1, duration = 100) {
+                if (!audioContext) return;
+                
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.value = freq;
+                gainNode.gain.value = volume;
+                
+                oscillator.start();
+                gainNode.gain.exponentialRampToValueAtTime(0.00001, audioContext.currentTime + duration / 1000);
+                
+                setTimeout(() => oscillator.stop(), duration);
+            }
+            
             $('.filter-button').on('click', function() {
                 const filterValue = $(this).attr('data-filter');
                 console.log('Filter clicked:', filterValue);
                 
+                // Play different tones based on filter
+                const baseFreq = 600;
+                let freqMultiplier = 1;
+                
                 if (filterValue === '*') {
                     $('.project-item').fadeIn();
+                    freqMultiplier = 1.5;
                 } else {
                     $('.project-item').hide();
                     $(filterValue).fadeIn();
+                    freqMultiplier = 1.2;
                 }
+                
+                playClickSound(baseFreq * freqMultiplier, 0.08, 80);
                 
                 $('.filter-button').removeClass('active');
                 $(this).addClass('active');
                 
                 return false;
+            });
+            
+            // Add subtle sounds to major interactive elements
+            $('.hero-button, .project-link, .nav-link').on('click', function() {
+                playClickSound(700, 0.05, 60);
             });
         });
     </script>

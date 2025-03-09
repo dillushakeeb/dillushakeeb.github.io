@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 6rem;
+    font-size: 4.5rem;
     font-weight: 800;
     letter-spacing: -0.04em;
 }
@@ -522,34 +522,83 @@ a:hover {
 }
 
 .hero-background {
-    display: none; /* Remove background in Vanschneider style */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.hero-background canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-background-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
+    opacity: 0.8;
 }
 
 .hero-section h1 {
-    font-size: 8vw; /* Responsive large text */
+    font-size: 4rem; /* Fixed size instead of vw for consistency */
     margin-bottom: var(--spacing-md);
     position: relative;
     font-weight: 900;
-    line-height: 1;
+    line-height: 1.2; /* Increased line height for better readability */
     color: var(--text-color);
-    max-width: 1000px;
+    max-width: 700px; /* Further reduced max-width to prevent overflow */
     letter-spacing: -0.05em;
     margin-top: 0;
+    animation: heroTextFade 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .hero-section h1 span {
     display: block;
 }
 
-/* Add a minimal accent underscore */
+/* Add a minimal accent underscore with animation */
 .hero-section h1::after {
     content: '';
     position: absolute;
-    width: 100px;
+    width: 0;
     height: 6px;
     background-color: var(--accent-color);
     bottom: -20px;
     left: 0;
+    animation: underscoreExtend 1.2s ease-out 0.5s forwards;
+}
+
+@keyframes heroTextFade {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes underscoreExtend {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100px;
+    }
 }
 
 @keyframes fadeInUp {
@@ -587,6 +636,7 @@ a:hover {
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
+    z-index: 1;
 }
 
 .scroll-indicator {
@@ -680,7 +730,7 @@ a:hover {
 /* Projects Section */
 .projects-section {
     background-color: var(--secondary-color);
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-xl) 0 calc(var(--spacing-xl) + 2rem) 0; /* Extra padding at bottom */
     margin-left: 80px; /* Adjust for sidebar */
 }
 
@@ -688,6 +738,23 @@ a:hover {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 var(--spacing-lg);
+}
+
+.projects-section h2 {
+    font-size: 3rem; /* Make the heading more prominent */
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.projects-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
 }
 
 .project-card {
@@ -699,8 +766,10 @@ a:hover {
     position: relative;
     z-index: 1;
     background-color: transparent;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: 0.5rem;
     display: block;
+    transform: translateY(0);
+    width: 100%;
 }
 
 .project-overlay {
@@ -709,35 +778,40 @@ a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: none;
+    background: rgba(0, 0, 0, 0);
     z-index: 1;
     opacity: 1;
+    transition: background 0.5s ease;
 }
 
 .project-img {
-    height: 500px;
+    height: 250px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
     overflow: hidden;
-    transition: transform 0.4s ease;
-}
-
-.project-card:hover .project-img {
-    transform: scale(1.02);
+    transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .project-card:hover {
-    transform: none;
-    box-shadow: none;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.03);
+}
+
+.project-card:hover .project-overlay {
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .project-category {
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     color: var(--text-light);
-    margin-top: var(--spacing-sm);
+    margin-top: 0.75rem;
     display: block;
     position: static;
     background: none;
@@ -745,23 +819,34 @@ a:hover {
     padding: 0;
     opacity: 1;
     transform: none;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .project-info {
     position: static;
     opacity: 1;
     transform: none;
-    margin-top: var(--spacing-xs);
+    margin-top: 0;
+    margin-bottom: 2rem; /* Increased bottom margin for better spacing between projects */
     transition: none;
+    padding-bottom: 0;
+    border-top: none;
 }
 
 .project-title {
     color: var(--text-color);
-    font-size: 2rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    margin: var(--spacing-xs) 0;
-    letter-spacing: -0.03em;
+    margin: 0.75rem 0 0.5rem 0;
+    letter-spacing: -0.02em;
     text-shadow: none;
+    line-height: 1.2;
+    display: block;
+    width: 100%;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
 }
 
 .project-title::after {
@@ -770,23 +855,28 @@ a:hover {
 
 .project-description {
     color: var(--text-light);
-    font-size: 1rem;
+    font-size: 0.875rem;
     max-width: 100%;
-    margin-top: var(--spacing-xs);
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
     text-shadow: none;
+    line-height: 1.4;
+    display: none; /* Hide descriptions to focus on titles */
 }
 
 .project-link {
     color: var(--accent-color);
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 0.8rem;
+    font-weight: 600;
     position: relative;
     display: inline-block;
-    margin-top: var(--spacing-sm);
+    margin-top: 0.25rem;
     padding: 0;
     transition: var(--transition-fast);
     text-shadow: none;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .project-link::after {
@@ -812,8 +902,14 @@ a:hover {
 /* Project grid layout */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+@media (max-width: 992px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
@@ -836,22 +932,40 @@ a:hover {
     color: var(--text-light);
     font-size: 1rem;
     font-weight: 500;
-    padding: 0;
+    padding: 8px 12px;
     position: relative;
     transition: var(--transition-fast);
     cursor: pointer;
     letter-spacing: -0.01em;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.filter-button::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: -1;
 }
 
 .filter-button::after {
     content: '';
     position: absolute;
-    bottom: -3px;
+    top: 0;
     left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    transition: width 0.3s ease;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 77, 18, 0.05);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
 }
 
 .filter-button:hover {
@@ -859,18 +973,32 @@ a:hover {
 }
 
 .filter-button.active {
-    color: var(--text-color);
+    color: var(--accent-color);
     font-weight: 600;
 }
 
-.filter-button:hover::after,
+.filter-button:hover::after {
+    opacity: 1;
+}
+
+.filter-button:hover::before,
+.filter-button.active::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
 .filter-button.active::after {
-    width: 100%;
+    opacity: 1;
 }
 
 /* Make sure project items display properly */
 .project-item {
     transition: opacity 0.4s ease;
+    background-color: var(--secondary-color);
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-item.hidden {
@@ -882,6 +1010,8 @@ a:hover {
     padding: var(--spacing-xl) 0;
     background-color: #f9f9f9;
     margin-left: 80px; /* Adjust for sidebar */
+    margin-top: 2rem; /* Add extra spacing at the top */
+    border-top: 1px solid rgba(0,0,0,0.05); /* Add a subtle separation line */
 }
 
 .skills-section .container {
@@ -893,6 +1023,19 @@ a:hover {
 .skills-section h2 {
     margin-bottom: var(--spacing-lg);
     text-align: left;
+    font-size: 3rem; /* Make the heading more prominent */
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.skills-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
 }
 
 .skills-grid {
@@ -1355,8 +1498,12 @@ footer p {
 
 /* Responsive */
 @media (max-width: 992px) {
+    .hero-section {
+        padding: 120px var(--spacing-md) var(--spacing-md) calc(80px + var(--spacing-md));
+    }
+    
     .hero-section h1 {
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
     
     .hero-section h2 {
@@ -1374,11 +1521,38 @@ footer p {
     .cursor, .cursor-follower {
         display: none;
     }
+    
+    .hero-background {
+        opacity: 0.4; /* Reduce background opacity on mobile for better text readability */
+    }
+    
+    .project-card:hover {
+        transform: translateY(-5px); /* Reduce hover effect on tablets */
+    }
+    
+    .projects-section h2,
+    .skills-section h2 {
+        font-size: 2.5rem;
+    }
+    
+    .project-title {
+        font-size: 1.1rem;
+        margin-top: 0.5rem;
+    }
 }
 
 @media (max-width: 768px) {
+    .hero-section {
+        padding: 100px var(--spacing-sm) var(--spacing-sm) calc(80px + var(--spacing-sm));
+    }
+    
     .hero-section h1 {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
+        max-width: 100%;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
     }
     
     .section-title {
@@ -1396,23 +1570,62 @@ footer p {
         padding-bottom: 10px;
     }
     
-    .filter-button-group .btn {
-        padding: 6px 12px;
-        font-size: 0.75rem;
+    .filter-button {
+        padding: 6px 8px;
+        font-size: 0.85rem;
     }
     
     .navbar-brand {
         font-size: 1.25rem;
     }
+    
+    .project-card:hover {
+        transform: none; /* Disable hover effect on mobile */
+    }
+    
+    .hero-background {
+        opacity: 0.3; /* Further reduce background opacity on smaller screens */
+    }
+    
+    .projects-section h2,
+    .skills-section h2 {
+        font-size: 2.2rem;
+    }
+    
+    .project-title {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+        font-weight: 600;
+    }
 }
 
 @media (max-width: 576px) {
+    .hero-section {
+        padding: 80px var(--spacing-xs) var(--spacing-xs) calc(80px + var(--spacing-xs));
+        min-height: 80vh; /* Allow smaller height on mobile */
+    }
+    
     .hero-section h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .hero-section h1::after {
+        height: 4px; /* Thinner underline on mobile */
     }
     
     .hero-section h2 {
         font-size: 1.2rem;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+        margin-top: var(--spacing-sm);
+    }
+    
+    .hero-button {
+        margin-top: var(--spacing-md);
+        padding: var(--spacing-xs) var(--spacing-sm);
     }
     
     .section-title {
@@ -1422,5 +1635,30 @@ footer p {
     .contact-info p {
         display: block;
         margin-bottom: 10px;
+    }
+    
+    .hero-background {
+        opacity: 0.25; /* Even more transparency on smallest screens */
+    }
+    
+    .projects-section h2,
+    .skills-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .project-title {
+        font-size: 1.2rem;
+    }
+    
+    .project-img {
+        height: 180px; /* Smaller image height for mobile */
+    }
+    
+    .project-info {
+        margin-bottom: 1rem; /* Less space between projects on mobile */
+    }
+    
+    .project-category {
+        font-size: 0.8rem;
     }
 }
