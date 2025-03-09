@@ -87,7 +87,7 @@
         
         .project-hero .scroll-hint {
             position: absolute;
-            bottom: 40px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             color: white;
@@ -100,6 +100,8 @@
             opacity: 0.8;
             transition: opacity 0.3s;
             z-index: 5; /* Ensure it's above other elements */
+            width: auto; /* Prevent expanding to container width */
+            text-align: center;
         }
         
         .project-hero .scroll-hint:hover {
@@ -470,10 +472,10 @@
             <div class="project-badge">Retail / Airport</div>
             <h1>Half Moon Empanadas</h1>
             <div class="location">Ronald Reagan Washington National Airport, Rm B2-606 & B1-673A STORAGE, Bldg 12201</div>
-            <div class="scroll-hint">
-                Scroll
-                <div class="scroll-line"></div>
-            </div>
+        </div>
+        <div class="scroll-hint">
+            Scroll
+            <div class="scroll-line"></div>
         </div>
     </section>
 
