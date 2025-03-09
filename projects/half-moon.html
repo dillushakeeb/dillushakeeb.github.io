@@ -384,13 +384,18 @@
             align-items: center;
             z-index: 9999;
             backdrop-filter: blur(8px);
+            padding: 20px;
+            box-sizing: border-box;
         }
         
         .lightbox-content {
-            max-width: 80%;
+            max-width: 85%;
             max-height: 80vh;
+            object-fit: contain;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-            border: 10px solid white;
+            border: 8px solid white;
+            margin: auto;
+            display: block;
         }
         
         .lightbox-caption {
@@ -400,21 +405,30 @@
             border-radius: 0 0 4px 4px;
             font-weight: 500;
             position: absolute;
-            bottom: 10%;
+            bottom: 5%;
             left: 50%;
             transform: translateX(-50%);
             width: 80%;
+            max-width: 85%;
             text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .lightbox-close {
             position: absolute;
-            top: 30px;
+            top: 20px;
             right: 30px;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: white;
             cursor: pointer;
             z-index: 10000;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
         }
         
         /* Responsive adjustments */
@@ -901,21 +915,25 @@
             }, 500);
         });
         
-        // Image lightbox effect
-        $('.project-gallery-image').click(function() {
-            let imgSrc = $(this).attr('src');
-            let imgAlt = $(this).attr('alt');
+        // Make sure the lightbox functionality is initialized for all images,
+        // including those in initially hidden tabs
+        $(document).ready(function() {
+            // Image lightbox effect - use event delegation for all current and future elements
+            $(document).on('click', '.project-gallery-image, .before-after img', function() {
+                let imgSrc = $(this).attr('src');
+                let imgAlt = $(this).attr('alt');
+                
+                $('.lightbox-content').attr('src', imgSrc);
+                $('.lightbox-caption').text(imgAlt);
+                $('.lightbox').css('display', 'flex').fadeIn('fast');
+            });
             
-            $('.lightbox-content').attr('src', imgSrc);
-            $('.lightbox-caption').text(imgAlt);
-            $('.lightbox').css('display', 'flex').fadeIn('fast');
-        });
-        
-        // Close lightbox on click
-        $('.lightbox, .lightbox-close').click(function(e) {
-            if (e.target !== $('.lightbox-content')[0]) {
-                $('.lightbox').fadeOut('fast');
-            }
+            // Close lightbox on click of background or close button
+            $('.lightbox, .lightbox-close').click(function(e) {
+                if ($(e.target).hasClass('lightbox') || $(e.target).hasClass('lightbox-close')) {
+                    $('.lightbox').fadeOut('fast');
+                }
+            });
         });
     </script>
 </body>
