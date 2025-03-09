@@ -1075,6 +1075,18 @@ a:hover {
     font-size: 1.5rem;
 }
 
+.skill-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: var(--spacing-xs);
+    transition: transform 0.3s ease;
+}
+
+.skill-box:hover .skill-logo {
+    transform: scale(1.1);
+}
+
 .skill-box h4 {
     font-size: 1rem;
     margin-bottom: var(--spacing-xs);

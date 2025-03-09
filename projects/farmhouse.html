@@ -9,105 +9,494 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="../css/style.css">
     <style>
+        /* Project Page Specific Styles */
         .project-hero {
-            height: 50vh;
-            min-height: 400px;
-            background: url('../assets/images/3d-renderings/1-render.png') no-repeat center center;
+            height: 85vh;
+            min-height: 700px;
+            background: url('../assets/images/farmhouse-aframe/1-render.png') no-repeat center center;
             background-size: cover;
             position: relative;
+            margin-left: 80px; /* Account for sidebar */
+            display: flex;
+            align-items: center;
         }
         
-        .project-hero .overlay {
+        .project-hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.85) 0%, 
+                rgba(0, 0, 0, 0.6) 40%, 
+                rgba(0, 0, 0, 0.3) 100%);
+            z-index: 1;
+        }
+        
+        .project-hero .container {
+            position: relative;
+            z-index: 2;
+            padding: 0 var(--spacing-xl);
+            max-width: 1000px;
+        }
+        
+        .project-hero .project-badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .project-hero h1 {
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-lg);
+            color: white;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+        
+        .project-hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100px;
+            height: 6px;
+            background-color: var(--accent-color);
+        }
+        
+        .project-hero .location {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+            max-width: 80%;
+        }
+        
+        .project-hero .scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            z-index: 5; /* Ensure it's above other elements */
+            width: auto; /* Prevent expanding to container width */
+            text-align: center;
+        }
+        
+        .project-hero .scroll-hint:hover {
+            opacity: 1;
+        }
+        
+        .project-hero .scroll-line {
+            height: 40px;
+            width: 2px;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-hero .scroll-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-color: var(--accent-color);
+            animation: scrollDown 1.5s infinite ease-in-out;
+        }
+        
+        @keyframes scrollDown {
+            0% { top: -50%; }
+            100% { top: 100%; }
+        }
+        
+        .project-details {
+            padding: var(--spacing-xl) 0;
+            margin-left: 80px; /* Account for sidebar */
+            background-color: var(--secondary-color);
+        }
+        
+        .project-details h2 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+            font-weight: 800;
+        }
+        
+        .project-details h3 {
+            font-size: 1.8rem;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
+            font-weight: 700;
+        }
+        
+        .project-details p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-light);
         }
         
         .project-gallery {
-            margin-top: 40px;
+            margin: var(--spacing-xl) 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            gap: var(--spacing-md);
         }
         
         .project-gallery img {
             width: 100%;
-            height: 250px;
+            height: 100%;
             object-fit: cover;
-            margin-bottom: 20px;
-            border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            filter: grayscale(20%);
         }
         
         .project-gallery img:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
+            filter: grayscale(0%);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-sidebar {
+            padding-left: var(--spacing-xl);
+            position: sticky;
+            top: var(--spacing-xl);
+            align-self: flex-start;
+        }
+        
+        .project-specs {
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid var(--accent-color);
+            padding: var(--spacing-md) var(--spacing-lg);
+            background-color: rgba(0, 0, 0, 0.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+        
+        .project-specs h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+            font-weight: 700;
+            color: var(--text-color);
+            position: relative;
+            padding-bottom: 8px;
+        }
+        
+        .project-specs h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 30px;
+            background-color: var(--accent-color);
         }
         
         .specs-list li {
-            margin-bottom: 10px;
-            border-bottom: 1px dashed #e6e6e6;
-            padding-bottom: 10px;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+        
+        .specs-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .specs-list li strong {
+            display: block;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+        
+        .timeline-item {
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            position: relative;
+            padding-left: calc(var(--spacing-md) + 10px);
+            border-left: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: var(--accent-color);
+            left: -8px;
+            top: 6px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item:not(:last-child):after {
+            display: none; /* Remove the original vertical line */
+        }
+        
+        .timeline-item p {
+            margin-bottom: 0;
+            padding-left: 10px;
+        }
+        
+        .timeline {
+            margin-top: 1rem;
+        }
+        
+        .timeline-item strong {
+            color: var(--text-color);
+            font-weight: 700;
+            display: block;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+        
+        .related-projects {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .related-projects h3 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .related-project {
+            margin-bottom: var(--spacing-lg);
+            transition: transform 0.3s ease;
+        }
+        
+        .related-project:hover {
+            transform: translateY(-10px);
+        }
+        
+        .related-project img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            margin-bottom: var(--spacing-sm);
+            transition: all 0.3s ease;
+        }
+        
+        .related-project:hover img {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-project h4 {
+            font-size: 1.2rem;
+            margin: var(--spacing-sm) 0;
+            font-weight: 700;
+        }
+        
+        .related-project p {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .back-to-projects {
+            display: inline-flex;
+            align-items: center;
+            margin-top: var(--spacing-xl);
+            color: var(--text-color);
+            font-weight: 600;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: var(--spacing-sm) 0;
+            padding-left: 25px; /* Make room for the arrow */
+        }
+        
+        .back-to-projects:before {
+            content: '←';
+            position: absolute;
+            left: 0;
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-to-projects:hover {
+            color: var(--accent-color);
+        }
+        
+        .back-to-projects:hover:before {
+            transform: translateX(-5px);
+            color: var(--accent-color);
+        }
+        
+        /* Lightbox improvements */
+        .lightbox {
+            backdrop-filter: blur(8px);
+        }
+        
+        .lightbox-content {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border: 10px solid white;
+            max-width: 80%;
+            max-height: 80vh;
+        }
+        
+        .lightbox-caption {
+            background-color: white;
+            color: var(--text-color);
+            padding: 12px 20px;
+            border-radius: 0 0 4px 4px;
+            font-weight: 500;
+        }
+        
+        .lightbox-close {
+            font-size: 2rem;
+            color: white;
+            top: 30px;
+            right: 30px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .project-hero {
+                margin-left: 0;
+                height: 70vh;
+                min-height: 600px;
+            }
+            
+            .project-details {
+                margin-left: 0;
+            }
+            
+            .project-hero h1 {
+                font-size: 4rem;
+            }
+            
+            .project-sidebar {
+                padding-left: 0;
+                margin-top: var(--spacing-xl);
+            }
+            
+            footer {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .project-hero .location {
+                font-size: 1.2rem;
+                max-width: 100%;
+            }
+            
+            .project-gallery {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, 250px);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .project-hero {
+                min-height: 500px;
+            }
+            
+            .project-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .project-hero .location {
+                font-size: 1rem;
+            }
+            
+            .project-gallery {
+                grid-template-rows: repeat(4, 200px);
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../index.html">DILLU SHAKEEB</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="../index.html#projects">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html#skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
+    <!-- Side Navigation -->
+    <nav class="side-nav">
+        <div class="brand">
+            <a href="../index.html">DS</a>
+        </div>
+        <ul class="nav-items">
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html#about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="../index.html#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html#contact">Contact</a>
+            </li>
+        </ul>
+        <div class="social-icon-container">
+            <a href="https://www.linkedin.com/in/dillu-shakeeb-663607288/" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
     </nav>
 
     <!-- Project Hero -->
     <section class="project-hero">
-        <div class="overlay"></div>
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-lg-8 mx-auto text-center text-white">
-                    <h1 class="fw-bold" data-aos="fade-up">Farmhouse G+1 A-Frame</h1>
-                    <p class="lead" data-aos="fade-up" data-aos-delay="200">Forest Hill Estate, Bethamangalam, Tamilnadu</p>
-                </div>
-            </div>
+        <div class="container">
+            <div class="project-badge">Residential / Vacation</div>
+            <h1>Farmhouse A-Frame</h1>
+            <div class="location">Forest Hill Estate, Bethamangalam, Tamilnadu</div>
+        </div>
+        <div class="scroll-hint">
+            Scroll
+            <div class="scroll-line"></div>
         </div>
     </section>
 
     <!-- Project Details -->
-    <section class="py-5">
+    <section class="project-details">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8" data-aos="fade-right">
-                    <h2 class="mb-4">Project Overview</h2>
+                <div class="col-lg-8">
+                    <h2>Project Overview</h2>
                     <p>The objective of this project was to craft a compact yet cozy rustic cabin using an A-frame structure. As the lead designer, I orchestrated site studies, conceptual layouts, massing refinements, and detailed 3D renderings. Additionally, I contributed to landscaping efforts and the design of the surrounding farmland, ensuring harmony between the cabin and its natural environment.</p>
                     
-                    <h3 class="mt-5 mb-4">Design Concept</h3>
+                    <h3>Design Concept</h3>
                     <p>The A-frame design was chosen for its efficiency, iconic silhouette, and structural integrity. The steep pitch of the roof allows for snow runoff while creating a dramatic interior space with high ceilings. The design emphasizes a strong connection to the outdoors with large glass facades that invite natural light and provide panoramic views of the surrounding forest estate.</p>
                     
                     <p>The interior layout maximizes the available space despite the triangular constraints of the A-frame structure. The ground floor features an open concept living, dining, and kitchen area, while the upper level contains sleeping quarters accessed via a space-efficient staircase. The design incorporates natural materials throughout, including exposed wood beams and stone elements, to reinforce the rustic cabin aesthetic.</p>
                     
-                    <h3 class="mt-5 mb-4">Key Features</h3>
+                    <h3>Key Features</h3>
                     <ul>
                         <li>Classic A-frame architectural design with modern touches</li>
                         <li>Two-level structure with efficient space utilization</li>
@@ -120,125 +509,118 @@
                     
                     <!-- Project Gallery -->
                     <div class="project-gallery">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img src="../assets/images/3d-renderings/1-render.png" alt="A-Frame Cabin - Front View" class="project-gallery-image">
-                            </div>
-                            <div class="col-md-6">
-                                <img src="../assets/images/3d-renderings/2-render.png" alt="A-Frame Cabin - Side View" class="project-gallery-image">
-                            </div>
-                            <div class="col-md-6">
-                                <img src="../assets/images/3d-renderings/7-render.png" alt="A-Frame Cabin - Interior View" class="project-gallery-image">
-                            </div>
-                            <div class="col-md-6">
-                                <img src="../assets/images/3d-renderings/8-render.png" alt="A-Frame Cabin - Construction" class="project-gallery-image">
-                            </div>
-                        </div>
+                        <img src="../assets/images/farmhouse-aframe/1-render.png" alt="A-Frame Cabin - Front View" class="project-gallery-image">
+                        <img src="../assets/images/farmhouse-aframe/2-render.png" alt="A-Frame Cabin - Side View" class="project-gallery-image">
+                        <img src="../assets/images/farmhouse-aframe/3-render.png" alt="A-Frame Cabin - Interior View" class="project-gallery-image">
+                        <img src="../assets/images/farmhouse-aframe/4-render.png" alt="A-Frame Cabin - Construction" class="project-gallery-image">
                     </div>
                 </div>
                 
-                <div class="col-lg-4" data-aos="fade-left">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h4 class="card-title">Project Specifications</h4>
-                            <ul class="list-unstyled specs-list">
-                                <li><strong>Client:</strong> Forest Hill Estate</li>
-                                <li><strong>Location:</strong> Bethamangalam, Tamilnadu</li>
-                                <li><strong>Year:</strong> 2021-2022</li>
-                                <li><strong>Structure:</strong> G+1 A-Frame</li>
-                                <li><strong>Project Type:</strong> Vacation Cabin</li>
-                                <li><strong>Services:</strong> Architectural Design, 3D Visualization, Landscaping Design</li>
-                                <li><strong>Software Used:</strong> SketchUp, Enscape, AutoCAD</li>
-                            </ul>
-                        </div>
+                <div class="col-lg-4 project-sidebar">
+                    <div class="project-specs">
+                        <h3>Project Specifications</h3>
+                        <ul class="list-unstyled specs-list">
+                            <li><strong>Client:</strong> Forest Hill Estate</li>
+                            <li><strong>Location:</strong> Bethamangalam, Tamilnadu</li>
+                            <li><strong>Year:</strong> 2021-2022</li>
+                            <li><strong>Structure:</strong> G+1 A-Frame</li>
+                            <li><strong>Project Type:</strong> Vacation Cabin</li>
+                            <li><strong>Services:</strong> Architectural Design, 3D Visualization, Landscaping Design</li>
+                            <li><strong>Software Used:</strong> SketchUp, Enscape, AutoCAD</li>
+                        </ul>
                     </div>
                     
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Space Planning</h4>
-                            <div class="specs-list">
-                                <p><strong>Ground Floor:</strong> Open-plan living/dining/kitchen area, deck</p>
-                                <p><strong>Upper Level:</strong> Bedroom, storage</p>
-                                <p><strong>Exterior:</strong> Integration with landscaping, natural setting</p>
-                                <p><strong>Materials:</strong> Wood structure, glass, stone accents</p>
-                                <p><strong>Special Features:</strong> Large front glass façade, minimalist interior design approach</p>
+                    <div class="project-specs">
+                        <h3>Space Planning</h3>
+                        <ul class="list-unstyled specs-list">
+                            <li><strong>Ground Floor:</strong> Open-plan living/dining/kitchen area, deck</li>
+                            <li><strong>Upper Level:</strong> Bedroom, storage</li>
+                            <li><strong>Exterior:</strong> Integration with landscaping, natural setting</li>
+                            <li><strong>Materials:</strong> Wood structure, glass, stone accents</li>
+                            <li><strong>Special Features:</strong> Large front glass façade, minimalist interior design approach</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="project-specs">
+                        <h3>Design Process</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <strong>Step 1</strong>
+                                <p>Site analysis and environmental studies</p>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card mt-4">
-                        <div class="card-body">
-                            <h4 class="card-title">Design Process</h4>
-                            <ol class="specs-list">
-                                <li>Site analysis and environmental studies</li>
-                                <li>Conceptual sketches and massing studies</li>
-                                <li>Space planning and layout development</li>
-                                <li>3D modeling and visualization</li>
-                                <li>Material and finish selections</li>
-                                <li>Construction documentation</li>
-                                <li>Construction phase consultation</li>
-                            </ol>
+                            <div class="timeline-item">
+                                <strong>Step 2</strong>
+                                <p>Conceptual sketches and massing studies</p>
+                            </div>
+                            <div class="timeline-item">
+                                <strong>Step 3</strong>
+                                <p>Space planning and layout development</p>
+                            </div>
+                            <div class="timeline-item">
+                                <strong>Step 4</strong>
+                                <p>3D modeling and visualization</p>
+                            </div>
+                            <div class="timeline-item">
+                                <strong>Step 5</strong>
+                                <p>Material and finish selections</p>
+                            </div>
+                            <div class="timeline-item">
+                                <strong>Step 6</strong>
+                                <p>Construction documentation</p>
+                            </div>
+                            <div class="timeline-item">
+                                <strong>Step 7</strong>
+                                <p>Construction phase consultation</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Related Projects -->
-            <div class="mt-5 pt-5 border-top">
-                <h3 class="text-center mb-4" data-aos="fade-up">Related Projects</h3>
+            <div class="related-projects">
+                <h3>Related Projects</h3>
                 <div class="row">
-                    <div class="col-md-4" data-aos="fade-up">
-                        <div class="card project-card">
-                            <div class="card-img-top project-img" style="background-image: url('../assets/images/g1-duplex/1-hero.png')"></div>
-                            <div class="card-body">
-                                <h5 class="card-title">G+1 Duplex</h5>
-                                <p class="card-text">Blue Aster, Electronic city, Bangalore</p>
-                                <a href="duplex.html" class="btn btn-sm btn-primary">View Project</a>
-                            </div>
-                        </div>
+                    <div class="col-md-4 related-project">
+                        <img src="../assets/images/g1-duplex/1-hero.png" alt="G+1 Duplex">
+                        <h4>G+1 Duplex</h4>
+                        <p>Blue Aster, Electronic city, Bangalore</p>
+                        <a href="duplex.html" class="project-link">View Project</a>
                     </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card project-card">
-                            <div class="card-img-top project-img" style="background-image: url('../assets/images/3d-renderings/3-render.png')"></div>
-                            <div class="card-body">
-                                <h5 class="card-title">3D Architectural Renderings</h5>
-                                <p class="card-text">Various residential projects</p>
-                                <a href="3d-renderings.html" class="btn btn-sm btn-primary">View Project</a>
-                            </div>
-                        </div>
+                    <div class="col-md-4 related-project">
+                        <img src="../assets/images/3d-renderings/1-render.png" alt="3D Architectural Renderings">
+                        <h4>3D Architectural Renderings</h4>
+                        <p>Various residential projects</p>
+                        <a href="3d-renderings.html" class="project-link">View Project</a>
                     </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="card project-card">
-                            <div class="card-img-top project-img" style="background-image: url('../assets/images/str-properties/1-living-room.png')"></div>
-                            <div class="card-body">
-                                <h5 class="card-title">STR Properties</h5>
-                                <p class="card-text">Interior Design for Vacation Rentals</p>
-                                <a href="str-properties.html" class="btn btn-sm btn-primary">View Project</a>
-                            </div>
-                        </div>
+                    <div class="col-md-4 related-project">
+                        <img src="../assets/images/str-properties/1-living-room.png" alt="STR Properties">
+                        <h4>STR Properties</h4>
+                        <p>Interior Design for Vacation Rentals</p>
+                        <a href="str-properties.html" class="project-link">View Project</a>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center mt-5">
-                <a href="../index.html#projects" class="btn btn-primary">Back to All Projects</a>
+            <div>
+                <a href="../index.html#projects" class="back-to-projects">Back to All Projects</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-4 text-center text-white">
+    <footer>
         <div class="container">
-            <div class="social-icons mb-4">
-                <a href="https://www.linkedin.com/in/dillu-shakeeb-663607288/" target="_blank" class="me-3"><i class="fab fa-linkedin fa-2x"></i></a>
-            </div>
             <p>© 2025 Dillu Shakeeb. All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/dillu-shakeeb-663607288/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         // Initialize AOS
