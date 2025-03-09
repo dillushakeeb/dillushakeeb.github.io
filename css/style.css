@@ -1456,44 +1456,47 @@ footer p {
 /* Cursor Effects */
 .cursor {
     position: fixed;
-    width: 20px;
-    height: 20px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background-color: var(--primary-color);
+    background-color: var(--accent-color);
     transform: translate(-50%, -50%);
     pointer-events: none;
     mix-blend-mode: difference;
     z-index: 9999;
-    opacity: 0.5;
-    transition: transform 0.2s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    opacity: 0.8;
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+    will-change: transform; /* Performance optimization */
 }
 
 .cursor-follower {
     position: fixed;
     width: 40px;
     height: 40px;
-    border: 2px solid var(--primary-color);
+    border: 1px solid var(--accent-color);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 9998;
-    opacity: 0.4;
-    transition: transform 0.5s ease, width 0.3s ease, height 0.3s ease, border 0.3s ease;
+    opacity: 0.5;
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease, border 0.3s ease;
+    will-change: transform; /* Performance optimization */
 }
 
 .cursor.cursor-active {
-    width: 10px;
-    height: 10px;
-    opacity: 0.8;
-    background-color: var(--primary-dark);
+    width: 8px;
+    height: 8px;
+    opacity: 1;
+    background-color: var(--accent-color);
 }
 
 .cursor-follower.cursor-active {
     width: 30px;
     height: 30px;
-    border-width: 3px;
-    background-color: rgba(224, 92, 68, 0.05);
-    border-color: var(--primary-dark);
+    border-width: 2px;
+    background-color: rgba(255, 77, 18, 0.05);
+    border-color: var(--accent-color);
+    opacity: 0.7;
 }
 
 /* Responsive */
