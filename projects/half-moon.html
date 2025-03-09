@@ -874,13 +874,6 @@
         </div>
     </footer>
 
-    <!-- Lightbox -->
-    <div class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content">
-        <div class="lightbox-caption"></div>
-    </div>
-
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
@@ -893,48 +886,55 @@
             once: true,
             mirror: false
         });
-        
+
         // Location tabs
         $('.location-tab').click(function() {
-            // Get the location ID
-            const location = $(this).data('location');
-            
-            // Hide all location sections
+            var location = $(this).data('location');
             $('.location-section').hide();
-            
-            // Show the selected location section
-            $(`#${location}-location`).show();
-            
-            // Update active tab
+            $('#' + location + '-location').show();
             $('.location-tab').removeClass('active');
             $(this).addClass('active');
-            
-            // Scroll to the location section
-            $('html, body').animate({
-                scrollTop: $(`#${location}-location`).offset().top - 120
-            }, 500);
         });
-        
-        // Make sure the lightbox functionality is initialized for all images,
-        // including those in initially hidden tabs
-        $(document).ready(function() {
-            // Image lightbox effect - use event delegation for all current and future elements
-            $(document).on('click', '.project-gallery-image, .before-after img', function() {
-                let imgSrc = $(this).attr('src');
-                let imgAlt = $(this).attr('alt');
-                
-                $('.lightbox-content').attr('src', imgSrc);
-                $('.lightbox-caption').text(imgAlt);
-                $('.lightbox').css('display', 'flex').fadeIn('fast');
-            });
+
+        // Add onclick attributes directly to all images in HTML
+        document.addEventListener('DOMContentLoaded', function() {
+            var images = document.querySelectorAll('.project-gallery-image, .before-after img');
+            for (var i = 0; i < images.length; i++) {
+                images[i].setAttribute('onclick', "showImage(this.src, this.alt)");
+                images[i].style.cursor = 'pointer';
+            }
+        });
+    </script>
+
+    <!-- Simple Modal/Lightbox HTML -->
+    <div id="imageModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); z-index:9999; padding:50px; text-align:center; overflow:auto;">
+        <span onclick="closeModal()" style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+        <img id="modalImage" style="max-width:90%; max-height:80vh; margin-top:50px; border:10px solid white;">
+        <div id="modalCaption" style="margin:auto; display:block; width:80%; max-width:700px; text-align:center; color:white; padding:10px 0; height:150px; background-color:rgba(255,255,255,0.1); margin-top:20px; font-size:16px;"></div>
+    </div>
+
+    <!-- Simple JavaScript for modal/lightbox -->
+    <script>
+        function showImage(src, alt) {
+            var modal = document.getElementById('imageModal');
+            var modalImg = document.getElementById('modalImage');
+            var captionText = document.getElementById('modalCaption');
             
-            // Close lightbox on click of background or close button
-            $('.lightbox, .lightbox-close').click(function(e) {
-                if ($(e.target).hasClass('lightbox') || $(e.target).hasClass('lightbox-close')) {
-                    $('.lightbox').fadeOut('fast');
+            modal.style.display = "block";
+            modalImg.src = src;
+            captionText.innerHTML = alt || 'Project Image';
+            
+            // Close if clicked outside the image
+            modal.onclick = function(event) {
+                if (event.target === modal || event.target.id === 'imageModal') {
+                    closeModal();
                 }
-            });
-        });
+            };
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
     </script>
 </body>
 </html>
