@@ -334,10 +334,13 @@
             position: relative;
             transition: all 0.3s ease;
             padding: var(--spacing-sm) 0;
+            padding-left: 25px; /* Make room for the arrow */
         }
         
         .back-to-projects:before {
             content: '←';
+            position: absolute;
+            left: 0;
             margin-right: 8px;
             transition: transform 0.3s ease;
         }
@@ -348,6 +351,7 @@
         
         .back-to-projects:hover:before {
             transform: translateX(-5px);
+            color: var(--accent-color);
         }
         
         /* Lightbox improvements */
@@ -574,7 +578,7 @@
             </div>
             
             <div>
-                <a href="../index.html#projects" class="back-to-projects">&larr; Back to All Projects</a>
+                <a href="../index.html#projects" class="back-to-projects">Back to All Projects</a>
             </div>
         </div>
     </section>
