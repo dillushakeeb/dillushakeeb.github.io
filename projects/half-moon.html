@@ -99,6 +99,7 @@
             align-items: center;
             opacity: 0.8;
             transition: opacity 0.3s;
+            z-index: 5; /* Ensure it's above other elements */
         }
         
         .project-hero .scroll-hint:hover {
@@ -107,10 +108,11 @@
         
         .project-hero .scroll-line {
             height: 40px;
-            width: 1px;
-            background-color: white;
+            width: 2px;
+            background-color: rgba(255, 255, 255, 0.5);
             margin-top: 10px;
             position: relative;
+            overflow: hidden;
         }
         
         .project-hero .scroll-line::before {
@@ -121,12 +123,12 @@
             width: 100%;
             height: 50%;
             background-color: var(--accent-color);
-            animation: scrollDown 1.5s infinite;
+            animation: scrollDown 1.5s infinite ease-in-out;
         }
         
         @keyframes scrollDown {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
+            0% { top: -50%; }
+            100% { top: 100%; }
         }
         
         .project-details {
@@ -192,6 +194,7 @@
             padding: var(--spacing-md) var(--spacing-lg);
             background-color: rgba(0, 0, 0, 0.02);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
         }
         
         .project-specs h3 {
@@ -200,6 +203,18 @@
             margin-bottom: var(--spacing-md);
             font-weight: 700;
             color: var(--text-color);
+            position: relative;
+            padding-bottom: 8px;
+        }
+        
+        .project-specs h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 30px;
+            background-color: var(--accent-color);
         }
         
         .specs-list li {
@@ -208,6 +223,12 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             font-size: 1rem;
             color: var(--text-light);
+        }
+        
+        .specs-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
         }
         
         .specs-list li strong {
@@ -221,35 +242,40 @@
             padding-bottom: var(--spacing-sm);
             position: relative;
             padding-left: calc(var(--spacing-md) + 10px);
+            border-left: 1px solid rgba(0, 0, 0, 0.1);
         }
         
         .timeline-item:before {
             content: '';
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 16px;
+            height: 16px;
             background-color: var(--accent-color);
-            left: 0;
-            top: 8px;
+            left: -8px;
+            top: 6px;
             border-radius: 50%;
+            z-index: 1;
         }
         
         .timeline-item:not(:last-child):after {
-            content: '';
-            position: absolute;
-            width: 1px;
-            height: calc(100% + var(--spacing-md));
-            background-color: rgba(0, 0, 0, 0.1);
-            left: 5px;
-            top: 18px;
+            display: none; /* Remove the original vertical line */
         }
         
         .timeline-item p {
             margin-bottom: 0;
+            padding-left: 10px;
         }
         
-        .timeline-item p strong {
+        .timeline {
+            margin-top: 1rem;
+        }
+        
+        .timeline-item strong {
             color: var(--text-color);
+            font-weight: 700;
+            display: block;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
         }
         
         .related-projects {
@@ -348,6 +374,66 @@
             top: 30px;
             right: 30px;
         }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .project-hero {
+                margin-left: 0;
+                height: 70vh;
+                min-height: 600px;
+            }
+            
+            .project-details {
+                margin-left: 0;
+            }
+            
+            .project-hero h1 {
+                font-size: 4rem;
+            }
+            
+            .project-sidebar {
+                padding-left: 0;
+                margin-top: var(--spacing-xl);
+            }
+            
+            footer {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .project-hero .location {
+                font-size: 1.2rem;
+                max-width: 100%;
+            }
+            
+            .project-gallery {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, 250px);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .project-hero {
+                min-height: 500px;
+            }
+            
+            .project-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .project-hero .location {
+                font-size: 1rem;
+            }
+            
+            .project-gallery {
+                grid-template-rows: repeat(4, 200px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -432,22 +518,28 @@
                         <h3>Project Timeline</h3>
                         <div class="timeline">
                             <div class="timeline-item">
-                                <p><strong>January 2023</strong><br>Initial concept design</p>
+                                <strong>January 2023</strong>
+                                <p>Initial concept design</p>
                             </div>
                             <div class="timeline-item">
-                                <p><strong>February 2023</strong><br>Detailed design and equipment selection</p>
+                                <strong>February 2023</strong>
+                                <p>Detailed design and equipment selection</p>
                             </div>
                             <div class="timeline-item">
-                                <p><strong>March 2023</strong><br>3D modeling and visualization</p>
+                                <strong>March 2023</strong>
+                                <p>3D modeling and visualization</p>
                             </div>
                             <div class="timeline-item">
-                                <p><strong>April 2023</strong><br>Vendor selection and bidding process</p>
+                                <strong>April 2023</strong>
+                                <p>Vendor selection and bidding process</p>
                             </div>
                             <div class="timeline-item">
-                                <p><strong>May-June 2023</strong><br>Construction management and implementation</p>
+                                <strong>May-June 2023</strong>
+                                <p>Construction management and implementation</p>
                             </div>
                             <div class="timeline-item">
-                                <p><strong>July 2023</strong><br>Grand opening</p>
+                                <strong>July 2023</strong>
+                                <p>Grand opening</p>
                             </div>
                         </div>
                     </div>
