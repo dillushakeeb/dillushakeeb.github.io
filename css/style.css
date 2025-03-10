@@ -552,7 +552,7 @@ a:hover {
 
 .hero-logo {
     position: absolute;
-    top: 60%;
+    top: 50%; /* Moved up from 60% to center */
     right: 0;
     width: 800px;
     height: 800px;
@@ -568,7 +568,68 @@ a:hover {
     height: 100%;
     object-fit: contain;
     background: transparent;
-    animation: float 5s ease-in-out infinite;
+    opacity: 0;
+    animation: fadeInLogo 0.5s ease forwards 2.5s, float 5s ease-in-out infinite 3s;
+}
+
+.hero-logo-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    animation: drawWobble 0.5s ease-in-out infinite, fadeOutAllPaths 0.5s ease-out 2.5s forwards;
+}
+
+@keyframes drawWobble {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(2px, 1px);
+    }
+    50% {
+        transform: translate(-1px, -1px);
+    }
+    75% {
+        transform: translate(-2px, 2px);
+    }
+}
+
+.hero-logo-svg .svg-path {
+    fill: none;
+    stroke: #000000; /* Changed to black */
+    stroke-width: 1.5; /* Thinner lines */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1500;
+    stroke-dashoffset: 1500;
+    animation: drawPath 1.5s ease-in-out forwards;
+    opacity: 1;
+}
+
+/* Animation moved to the main hero-logo-svg selector */
+
+@keyframes fadeOutAllPaths {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes drawPath {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fadeInLogo {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes pulsate {
@@ -1580,7 +1641,7 @@ footer p {
     .hero-logo {
         width: 530px; /* ~800/1.5 */
         height: 530px;
-        top: 50%;
+        top: 50%; /* Keep centered */
         right: 0;
     }
     

@@ -32,12 +32,76 @@
             align-items: center;
             margin-bottom: 20px;
             overflow: hidden;
+            position: relative;
         }
         .logo-container img {
             max-width: 100%;
             max-height: 100%;
-            opacity: 1;
+            opacity: 0;
             background: transparent;
+            animation: fadeIn 0.5s ease forwards 2.5s; /* Fade in before lines disappear */
+        }
+        .draw-svg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        .svg-path {
+            fill: none;
+            stroke: #000000; /* Changed to black */
+            stroke-width: 1.5; /* Thinner lines */
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 1500;
+            stroke-dashoffset: 1500;
+            animation: drawPath 1.5s ease-in-out forwards;
+            opacity: 1;
+        }
+        
+        .draw-svg-container {
+            animation: fadeOutAllPaths 0.5s ease-out 2.5s forwards;
+        }
+        
+        @keyframes fadeOutAllPaths {
+            to {
+                opacity: 0;
+            }
+        }
+        
+        /* Add hand-drawn effect with slight wobble */
+        @keyframes drawWobble {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(2px, 1px);
+            }
+            50% {
+                transform: translate(-1px, -1px);
+            }
+            75% {
+                transform: translate(-2px, 2px);
+            }
+        }
+        
+        .draw-svg-container {
+            animation: drawWobble 0.5s ease-in-out infinite;
+        }
+        @keyframes drawPath {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
         .loader {
             position: relative;
@@ -69,8 +133,73 @@
     <div id="preloader">
         <div class="logo-container">
             <img src="assets/images/profile/display_doodle.jpg" alt="Dillu Shakeeb Logo">
+            <div class="draw-svg-container">
+                <svg viewBox="0 0 400 400" width="100%" height="100%">
+                    <!-- More accurate paths matching the actual doodle logo -->
+                    <path class="svg-path" d="M100,100 C150,80 250,80 300,100" style="animation-delay: 0s;"></path>
+                    <path class="svg-path" d="M110,110 C130,120 150,150 140,200 C130,250 100,280 120,300" style="animation-delay: 0.3s;"></path>
+                    <path class="svg-path" d="M150,120 C180,140 200,180 170,220" style="animation-delay: 0.6s;"></path>
+                    <path class="svg-path" d="M200,100 C240,130 260,170 230,230" style="animation-delay: 0.9s;"></path>
+                    <path class="svg-path" d="M250,110 C270,140 280,180 260,210" style="animation-delay: 1.2s;"></path>
+                    <path class="svg-path" d="M150,250 C180,230 220,230 240,250" style="animation-delay: 1.5s;"></path>
+                    <path class="svg-path" d="M120,180 C140,190 170,180 190,170" style="animation-delay: 1.8s;"></path>
+                    <path class="svg-path" d="M220,180 C240,190 270,180 290,170" style="animation-delay: 2.1s;"></path>
+                    <path class="svg-path" d="M160,280 C200,320 260,290 290,260" style="animation-delay: 2.4s;"></path>
+                    <path class="svg-path" d="M100,240 C150,250 250,250 300,240" style="animation-delay: 2.7s;"></path>
+                </svg>
+            </div>
         </div>
         <div class="loader"></div>
+        
+        <!-- Sound effect for drawing - optional, will only play if browser allows -->
+        <audio id="drawingSound" preload="auto">
+            <source src="data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" type="audio/mpeg">
+        </audio>
+        
+        <script>
+            // Enable drawing sound effect on user interaction
+            document.addEventListener('DOMContentLoaded', function() {
+                // Add click handler to the preloader to allow user-initiated sound
+                document.getElementById('preloader').addEventListener('click', function() {
+                    var drawingSound = document.getElementById('drawingSound');
+                    if (drawingSound) {
+                        // Set volume low to be subtle
+                        drawingSound.volume = 0.1;
+                        drawingSound.currentTime = 0; // Reset to beginning
+                        drawingSound.play().catch(function(e) {
+                            console.log("Audio play prevented: " + e);
+                        });
+                    }
+                    
+                    // Reset animations on click for a redraw effect
+                    var paths = document.querySelectorAll('.svg-path');
+                    paths.forEach(function(path) {
+                        path.style.animation = 'none';
+                        path.offsetHeight; // Trigger reflow
+                        path.style.animation = null;
+                    });
+                });
+                
+                // Add a hint for interaction
+                var hint = document.createElement('div');
+                hint.textContent = 'Tap to draw';
+                hint.style.color = '#fff';
+                hint.style.opacity = '0.7';
+                hint.style.fontFamily = 'var(--font-primary)';
+                hint.style.fontSize = '14px';
+                hint.style.position = 'absolute';
+                hint.style.bottom = '40px';
+                hint.style.left = '50%';
+                hint.style.transform = 'translateX(-50%)';
+                hint.style.animation = 'fadeInOut 2s ease-in-out infinite';
+                document.getElementById('preloader').appendChild(hint);
+            });
+            
+            // Add animation for the hint
+            var style = document.createElement('style');
+            style.textContent = '@keyframes fadeInOut { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.7; } }';
+            document.head.appendChild(style);
+        </script>
     </div>
     <!-- Navigation -->
     <nav class="side-nav">
@@ -111,6 +240,21 @@
         </div>
         <div class="hero-logo">
             <img src="assets/images/profile/display_doodle.jpg" alt="Dillu Shakeeb Logo">
+            <div class="hero-logo-svg">
+                <svg viewBox="0 0 400 400" width="100%" height="100%">
+                    <!-- More accurate paths matching the actual doodle logo -->
+                    <path class="svg-path" d="M100,100 C150,80 250,80 300,100" style="animation-delay: 0s;"></path>
+                    <path class="svg-path" d="M110,110 C130,120 150,150 140,200 C130,250 100,280 120,300" style="animation-delay: 0.3s;"></path>
+                    <path class="svg-path" d="M150,120 C180,140 200,180 170,220" style="animation-delay: 0.6s;"></path>
+                    <path class="svg-path" d="M200,100 C240,130 260,170 230,230" style="animation-delay: 0.9s;"></path>
+                    <path class="svg-path" d="M250,110 C270,140 280,180 260,210" style="animation-delay: 1.2s;"></path>
+                    <path class="svg-path" d="M150,250 C180,230 220,230 240,250" style="animation-delay: 1.5s;"></path>
+                    <path class="svg-path" d="M120,180 C140,190 170,180 190,170" style="animation-delay: 1.8s;"></path>
+                    <path class="svg-path" d="M220,180 C240,190 270,180 290,170" style="animation-delay: 2.1s;"></path>
+                    <path class="svg-path" d="M160,280 C200,320 260,290 290,260" style="animation-delay: 2.4s;"></path>
+                    <path class="svg-path" d="M100,240 C150,250 250,250 300,240" style="animation-delay: 2.7s;"></path>
+                </svg>
+            </div>
         </div>
         <div class="hero-content">
             <h1>
