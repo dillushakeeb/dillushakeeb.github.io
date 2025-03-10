@@ -534,8 +534,8 @@ jQuery(document).ready(function($) {
         }
     }
     
-    // Initialize THREE.js hero background - defer to ensure DOM is ready
-    setTimeout(initHeroBackground, 100);
+    // THREE.js hero background animation disabled
+    // setTimeout(initHeroBackground, 100);
     
     // Parallax effect for project images
     $(window).scroll(function() {

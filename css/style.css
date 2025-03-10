@@ -550,6 +550,75 @@ a:hover {
     opacity: 0.8;
 }
 
+.hero-logo {
+    position: absolute;
+    top: 60%;
+    right: 10%;
+    width: 600px;
+    height: 600px;
+    z-index: 10;
+    opacity: 0;
+    transform: translate(20px, -50%);
+    animation: heroLogoAppear 1s ease forwards 0.8s;
+}
+
+/* Removed circular decorations for transparent look */
+
+.hero-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: transparent;
+    animation: float 5s ease-in-out infinite;
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes heroLogoAppear {
+    0% {
+        opacity: 0;
+        transform: translate(50px, -50%) scale(0.8) rotate(-10deg);
+    }
+    60% {
+        transform: translate(0, -50%) scale(1.1) rotate(5deg);
+        opacity: 1;
+    }
+    80% {
+        transform: translate(0, -50%) scale(0.95) rotate(0deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, -50%) scale(1) rotate(0deg);
+    }
+}
+
 .hero-section h1 {
     font-size: 4rem; /* Fixed size instead of vw for consistency */
     margin-bottom: var(--spacing-md);
@@ -632,9 +701,9 @@ a:hover {
 }
 
 .hero-content {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+    width: 60%;
+    max-width: 800px;
+    margin: 0 0 0 5%;
     position: relative;
     z-index: 1;
 }
@@ -1525,6 +1594,13 @@ footer p {
         font-size: 1.5rem;
     }
     
+    .hero-logo {
+        width: 400px;
+        height: 400px;
+        top: 50%;
+        right: 10%;
+    }
+    
     .section-title {
         font-size: 2.5rem;
     }
@@ -1561,6 +1637,13 @@ footer p {
         padding: 100px var(--spacing-sm) var(--spacing-sm) calc(80px + var(--spacing-sm));
     }
     
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0 0 400px 0; /* Add space below for the larger logo */
+    }
+    
     .hero-section h1 {
         font-size: 2.5rem;
         max-width: 100%;
@@ -1568,6 +1651,35 @@ footer p {
     
     .hero-description {
         font-size: 1rem;
+        max-width: 90%;
+    }
+    
+    .hero-logo {
+        width: 360px;
+        height: 360px;
+        top: auto;
+        bottom: 50px;
+        right: 50%;
+        transform: translate(50%, 0);
+        animation: heroLogoAppearMobile 1s ease forwards 0.8s;
+    }
+    
+    @keyframes heroLogoAppearMobile {
+        0% {
+            opacity: 0;
+            transform: translate(50%, 50px) scale(0.8) rotate(-10deg);
+        }
+        60% {
+            transform: translate(50%, 0) scale(1.1) rotate(5deg);
+            opacity: 1;
+        }
+        80% {
+            transform: translate(50%, 0) scale(0.95) rotate(0deg);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(50%, 0) scale(1) rotate(0deg);
+        }
     }
     
     .section-title {
@@ -1631,6 +1743,16 @@ footer p {
     
     .hero-section h2 {
         font-size: 1.2rem;
+    }
+    
+    .hero-logo {
+        width: 280px;
+        height: 280px;
+        bottom: 40px;
+    }
+    
+    .hero-content {
+        padding: 0 0 320px 0;
     }
     
     .hero-description {
