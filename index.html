@@ -25,8 +25,8 @@
             flex-direction: column;
         }
         .logo-container {
-            width: 400px;
-            height: 400px;
+            width: 530px; /* ~800/1.5 */
+            height: 530px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,24 +36,8 @@
         .logo-container img {
             max-width: 100%;
             max-height: 100%;
-            opacity: 0;
-            transform: scale(0.5);
-            animation: logoReveal 1.5s ease forwards 0.3s;
+            opacity: 1;
             background: transparent;
-        }
-        @keyframes logoReveal {
-            0% {
-                opacity: 0;
-                transform: scale(0.5) rotate(-10deg);
-            }
-            70% {
-                opacity: 1;
-                transform: scale(1.1) rotate(5deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
         }
         .loader {
             position: relative;

@@ -553,13 +553,12 @@ a:hover {
 .hero-logo {
     position: absolute;
     top: 60%;
-    right: 10%;
-    width: 600px;
-    height: 600px;
+    right: 0;
+    width: 800px;
+    height: 800px;
     z-index: 10;
-    opacity: 0;
-    transform: translate(20px, -50%);
-    animation: heroLogoAppear 1s ease forwards 0.8s;
+    opacity: 1;
+    transform: translate(0, -50%);
 }
 
 /* Removed circular decorations for transparent look */
@@ -601,23 +600,7 @@ a:hover {
     }
 }
 
-@keyframes heroLogoAppear {
-    0% {
-        opacity: 0;
-        transform: translate(50px, -50%) scale(0.8) rotate(-10deg);
-    }
-    60% {
-        transform: translate(0, -50%) scale(1.1) rotate(5deg);
-        opacity: 1;
-    }
-    80% {
-        transform: translate(0, -50%) scale(0.95) rotate(0deg);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(0, -50%) scale(1) rotate(0deg);
-    }
-}
+/* Removed entrance animations, keeping only the float effect */
 
 .hero-section h1 {
     font-size: 4rem; /* Fixed size instead of vw for consistency */
@@ -1595,10 +1578,10 @@ footer p {
     }
     
     .hero-logo {
-        width: 400px;
-        height: 400px;
+        width: 530px; /* ~800/1.5 */
+        height: 530px;
         top: 50%;
-        right: 10%;
+        right: 0;
     }
     
     .section-title {
@@ -1641,7 +1624,7 @@ footer p {
         width: 100%;
         max-width: 100%;
         margin: 0;
-        padding: 0 0 400px 0; /* Add space below for the larger logo */
+        padding: 0 0 500px 0; /* Adjusted for 1.5x smaller logo */
     }
     
     .hero-section h1 {
@@ -1655,32 +1638,15 @@ footer p {
     }
     
     .hero-logo {
-        width: 360px;
-        height: 360px;
+        width: 480px; /* ~720/1.5 */
+        height: 480px;
         top: auto;
         bottom: 50px;
         right: 50%;
         transform: translate(50%, 0);
-        animation: heroLogoAppearMobile 1s ease forwards 0.8s;
     }
     
-    @keyframes heroLogoAppearMobile {
-        0% {
-            opacity: 0;
-            transform: translate(50%, 50px) scale(0.8) rotate(-10deg);
-        }
-        60% {
-            transform: translate(50%, 0) scale(1.1) rotate(5deg);
-            opacity: 1;
-        }
-        80% {
-            transform: translate(50%, 0) scale(0.95) rotate(0deg);
-        }
-        100% {
-            opacity: 1;
-            transform: translate(50%, 0) scale(1) rotate(0deg);
-        }
-    }
+    /* Removed mobile entrance animations as well */
     
     .section-title {
         font-size: 2.2rem;
@@ -1746,13 +1712,13 @@ footer p {
     }
     
     .hero-logo {
-        width: 280px;
-        height: 280px;
+        width: 370px; /* ~560/1.5 */
+        height: 370px;
         bottom: 40px;
     }
     
     .hero-content {
-        padding: 0 0 320px 0;
+        padding: 0 0 420px 0; /* Adjusted for smaller logo */
     }
     
     .hero-description {
